@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
+  <reporter-output>
+  </reporter-output>
+  <suite name="SIEV.test.Tests" duration-ms="63326" started-at="2019-11-11T19:30:39Z" finished-at="2019-11-11T19:31:42Z">
+    <groups>
+    </groups>
+    <test name="Command line test" duration-ms="63326" started-at="2019-11-11T19:30:39Z" finished-at="2019-11-11T19:31:42Z">
+      <class name="SIEV.test.Tests">
+        <test-method status="PASS" signature="init()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="init" is-config="true" duration-ms="10231" started-at="2019-11-11T19:30:39Z" finished-at="2019-11-11T19:30:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="LoginFailTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="LoginFailTest" duration-ms="6178" started-at="2019-11-11T19:30:49Z" finished-at="2019-11-11T19:30:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginFailTest -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="endTest" is-config="true" duration-ms="48" started-at="2019-11-11T19:30:55Z" finished-at="2019-11-11T19:30:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endTest -->
+        <test-method status="PASS" signature="init()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="init" is-config="true" duration-ms="9534" started-at="2019-11-11T19:30:55Z" finished-at="2019-11-11T19:31:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="LoginOkTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="LoginOkTest" duration-ms="3418" started-at="2019-11-11T19:31:05Z" finished-at="2019-11-11T19:31:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginOkTest -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="endTest" is-config="true" duration-ms="44" started-at="2019-11-11T19:31:08Z" finished-at="2019-11-11T19:31:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endTest -->
+        <test-method status="PASS" signature="init()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="init" is-config="true" duration-ms="10902" started-at="2019-11-11T19:31:08Z" finished-at="2019-11-11T19:31:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="LoginWrongRegionTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="LoginWrongRegionTest" duration-ms="6233" started-at="2019-11-11T19:31:19Z" finished-at="2019-11-11T19:31:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginWrongRegionTest -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="endTest" is-config="true" duration-ms="44" started-at="2019-11-11T19:31:26Z" finished-at="2019-11-11T19:31:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endTest -->
+        <test-method status="PASS" signature="init()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="init" is-config="true" duration-ms="10948" started-at="2019-11-11T19:31:26Z" finished-at="2019-11-11T19:31:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="LoginWrongUserTypeTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="LoginWrongUserTypeTest" duration-ms="5676" started-at="2019-11-11T19:31:37Z" finished-at="2019-11-11T19:31:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginWrongUserTypeTest -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="endTest" is-config="true" duration-ms="46" started-at="2019-11-11T19:31:42Z" finished-at="2019-11-11T19:31:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endTest -->
+      </class> <!-- SIEV.test.Tests -->
+    </test> <!-- Command line test -->
+  </suite> <!-- SIEV.test.Tests -->
+</testng-results>
