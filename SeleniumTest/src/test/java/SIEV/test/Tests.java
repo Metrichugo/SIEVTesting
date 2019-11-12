@@ -24,11 +24,11 @@ public class Tests {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.navigate().to(Constants.endPoint);
-		Helpers.threadSleep(5);
+		Helpers.threadSleep(2);
 	}
 	
 	// TCS-6
-	@Test
+	/*@Test
 	public void LoginFailTest() {
 		PageLogin pageLogin = new PageLogin(driver);
 		pageLogin.Login(Helpers.LoginPageHelpers.WRONG_USER_VALUE, Helpers.LoginPageHelpers.WRONG_PASS_VALUE);
@@ -57,10 +57,10 @@ public class Tests {
 		PageLogin pageLogin =  new PageLogin(driver);
 		pageLogin.Login(Helpers.LoginPageHelpers.USER_VALUE, Helpers.LoginPageHelpers.PASS_VALUE,Helpers.LoginPageHelpers.REGION_VALUE,Helpers.LoginPageHelpers.WRONG_USER_TYPE_VALUE);		
 		pageLogin.assertWrongLogin();
-	}
+	}*/
 	
 	// TCS-27
-	/*@Test
+	@Test
 	public void InvoiceStructureSIEVTest() {
 		PageLogin pageLogin = new PageLogin(driver);
 		pageLogin.Login();
@@ -68,7 +68,7 @@ public class Tests {
 		pageHome.openEvaluationMenu();
 		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
 		pageEvaluacion.assertEstructuraFolioSIEV();
-	}*/
+	}
 	
 	@AfterMethod
 	public void endTest() {
