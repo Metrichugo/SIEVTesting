@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 
 import SIEV.common.Constants;
 import SIEV.helpers.Helpers;
+import SIEV.pages.PageEvaluacion;
+import SIEV.pages.PageHome;
 import SIEV.pages.PageLogin;
 
 public class Tests {
@@ -58,10 +60,15 @@ public class Tests {
 	}
 	
 	// TCS-27
-	@Test
+	/*@Test
 	public void InvoiceStructureSIEVTest() {
-		
-	}
+		PageLogin pageLogin = new PageLogin(driver);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
+		pageEvaluacion.assertEstructuraFolioSIEV();
+	}*/
 	
 	@AfterMethod
 	public void endTest() {

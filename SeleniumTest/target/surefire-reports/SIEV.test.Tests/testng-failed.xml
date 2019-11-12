@@ -5,9 +5,9 @@
     <classes>
       <class name="SIEV.test.Tests">
         <methods>
+          <include name="InvoiceStructureSIEVTest"/>
           <include name="endTest"/>
           <include name="init"/>
-          <include name="LoginWrongUserTypeTest"/>
         </methods>
       </class> <!-- SIEV.test.Tests -->
     </classes>

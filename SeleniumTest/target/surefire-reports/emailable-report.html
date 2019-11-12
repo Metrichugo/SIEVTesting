@@ -9,13 +9,18 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="7">SIEV.test.Tests</th></tr>
-<tr><td><a href="#t0">Command line test</a></td><td class="num">4</td><td class="num">0</td><td class="num">0</td><td class="num">63,326</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Command line test</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">19,241</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">SIEV.test.Tests</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Command line test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="4">SIEV.test.Tests</td><td><a href="#m0">LoginFailTest</a></td><td rowspan="1">1573500649666</td><td rowspan="1">6178</td></tr><tr class="passedeven"><td><a href="#m1">LoginOkTest</a></td><td rowspan="1">1573500665428</td><td rowspan="1">3418</td></tr><tr class="passedeven"><td><a href="#m2">LoginWrongRegionTest</a></td><td rowspan="1">1573500679793</td><td rowspan="1">6233</td></tr><tr class="passedeven"><td><a href="#m3">LoginWrongUserTypeTest</a></td><td rowspan="1">1573500697019</td><td rowspan="1">5676</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">SIEV.test.Tests</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Command line test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">SIEV.test.Tests</td><td><a href="#m0">InvoiceStructureSIEVTest</a></td><td rowspan="1">1573571675233</td><td rowspan="1">7527</td></tr></tbody>
 </table>
-<h2>Command line test</h2><h3 id="m0">SIEV.test.Tests#LoginFailTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">SIEV.test.Tests#LoginOkTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">SIEV.test.Tests#LoginWrongRegionTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m3">SIEV.test.Tests#LoginWrongUserTypeTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Command line test</h2><h3 id="m0">SIEV.test.Tests#InvoiceStructureSIEVTest</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: Cannot locate element with text: 9
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;5491MTY&apos;, ip: &apos;10.183.0.250&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_221&apos;
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:147)
+	at SIEV.pages.PageEvaluacion.assertEstructuraFolioSIEV(PageEvaluacion.java:49)
+	at SIEV.test.Tests.InvoiceStructureSIEVTest(Tests.java:70)
+... Removed 34 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

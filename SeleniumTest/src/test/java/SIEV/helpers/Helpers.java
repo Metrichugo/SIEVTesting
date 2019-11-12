@@ -21,4 +21,18 @@ public class Helpers {
 		public static final String WRONG_REGION_VALUE = "Region 2";
 		public static final String WRONG_USER_TYPE_VALUE = "PROMOTORES";
 	}
+	
+	public class EvaluacionPageHelpers{
+		public static final String FIRST_NAME_VALUE = "FABIANA";
+		public static final String SECOND_NAME_VALUE = "";
+		public static final String LASTNAME_VALUE = "MORALES";
+		public static final String SECOND_LASTNAME_VALUE = "DOMINGO";
+		public static final String REGION_VALUE = "9";
+		public static final String CANAL_VALUE = "CAC";
+		public static final String FUERZA_VENTA_VALUE = "PRUEBAS";
+		public static final String MOVIMIENTO_VALUE = "ACTIVACION";
+		public static final String PROYECTO_VALUE = "CLIENTE NACIONAL";
+		public static final String TIPO_PLAZO_VALUE = "L";
+		public static final String FORMA_PAGO_VALUE = "DOMICILIACION";
+	}
 }

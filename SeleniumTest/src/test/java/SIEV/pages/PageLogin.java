@@ -60,4 +60,15 @@ public class PageLogin {
 		Assert.assertTrue(driver.findElement(userLoged).getText().contains(Helpers.LoginPageHelpers.USER_VALUE));
 	}
 	
+	
+	public void Login() {
+		driver.findElement(userNameField).sendKeys(Helpers.LoginPageHelpers.USER_VALUE);
+		driver.findElement(userPassField).sendKeys(Helpers.LoginPageHelpers.PASS_VALUE);
+		Select regionElement = new Select(driver.findElement(regionDrop));
+		regionElement.selectByVisibleText(Helpers.LoginPageHelpers.REGION_VALUE);
+		Select userTypeElement = new Select(driver.findElement(userTypeDrop));
+		userTypeElement.selectByVisibleText(Helpers.LoginPageHelpers.USER_TYPE_VALUE);
+		driver.findElement(loginButton).click();
+		Helpers.threadSleep(2);
+	}
 }

@@ -1,4 +1,14 @@
 -------------------------------------------------------------------------------
 Test set: SIEV.test.Tests
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 63.838 sec
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 19.791 sec <<< FAILURE!
+InvoiceStructureSIEVTest(SIEV.test.Tests)  Time elapsed: 7.531 sec  <<< FAILURE!
+org.openqa.selenium.NoSuchElementException: Cannot locate element with text: 9
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: '5491MTY', ip: '10.183.0.250', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_221'
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:147)
+	at SIEV.pages.PageEvaluacion.assertEstructuraFolioSIEV(PageEvaluacion.java:49)
+	at SIEV.test.Tests.InvoiceStructureSIEVTest(Tests.java:70)
+
