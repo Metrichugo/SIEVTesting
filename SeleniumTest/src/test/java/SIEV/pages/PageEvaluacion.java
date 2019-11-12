@@ -47,10 +47,11 @@ public class PageEvaluacion {
 		driver.findElement(secondLastNameField).sendKeys(Helpers.EvaluacionPageHelpers.SECOND_LASTNAME_VALUE);
 		Select region = new Select(driver.findElement(regionTypeDrop));
 		region.selectByVisibleText(Helpers.EvaluacionPageHelpers.REGION_VALUE);
-		Helpers.threadSleepMillis(Helpers.defaultMillis);
+		Helpers.threadSleep(1);
 		Select canal = new Select(driver.findElement(canalTypeDrop));
 		canal.selectByVisibleText(Helpers.EvaluacionPageHelpers.CANAL_VALUE);
-		/*Select fuerzaVenta = new Select(driver.findElement(fuerzaVTypeDrop));
+		Helpers.threadSleepMillis(500);
+		Select fuerzaVenta = new Select(driver.findElement(fuerzaVTypeDrop));
 		fuerzaVenta.selectByVisibleText(Helpers.EvaluacionPageHelpers.FUERZA_VENTA_VALUE);
 		Select movimiento = new Select(driver.findElement(movimientoTypeDrop));
 		movimiento.selectByVisibleText(Helpers.EvaluacionPageHelpers.MOVIMIENTO_VALUE);
@@ -59,7 +60,7 @@ public class PageEvaluacion {
 		Select tipoPlazo = new Select(driver.findElement(tipoPlazoTypeDrop));
 		tipoPlazo.selectByVisibleText(Helpers.EvaluacionPageHelpers.TIPO_PLAZO_VALUE);
 		Select formaPago = new Select(driver.findElement(formaPagoTypeDrop));
-		formaPago.selectByVisibleText(Helpers.EvaluacionPageHelpers.FORMA_PAGO_VALUE);*/
+		formaPago.selectByVisibleText(Helpers.EvaluacionPageHelpers.FORMA_PAGO_VALUE);
 		driver.findElement(rfcButton).click();
 	}
 }

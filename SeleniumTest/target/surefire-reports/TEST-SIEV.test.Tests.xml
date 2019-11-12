@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="1" name="SIEV.test.Tests" time="9.074" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="SIEV.test.Tests" time="10.684" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jre1.8.0_221\bin"/>
@@ -65,29 +65,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="SIEV.test.Tests" name="InvoiceStructureSIEVTest" time="9.074">
-    <failure message="Cannot locate element with text: CACS
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;5491MTY&apos;, ip: &apos;10.183.1.67&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_221&apos;
-Driver info: driver.version: unknown" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Cannot locate element with text: CACS
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;5491MTY&apos;, ip: &apos;10.183.1.67&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_221&apos;
-Driver info: driver.version: unknown
-	at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:147)
-	at SIEV.pages.PageEvaluacion.assertEstructuraFolioSIEV(PageEvaluacion.java:53)
-	at SIEV.test.Tests.InvoiceStructureSIEVTest(Tests.java:70)
-</failure>
-    <system-out>Configuring TestNG with: org.apache.maven.surefire.testng.conf.TestNG652Configurator@5eb5c224
-El driver no es null: ChromeDriver: chrome on XP (bb8c49087d5365bb3c2dadfec8e53e5d)
-</system-out>
-    <system-err>Starting ChromeDriver 77.0.3865.40 (f484704e052e0b556f8030b65b953dce96503217-refs/branch-heads/3865@{#442}) on port 11864
-Only local connections are allowed.
-Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
-[1573574708.124][WARNING]: This version of ChromeDriver has not been tested with Chrome version 78.
-Nov 12, 2019 10:05:09 AM org.openqa.selenium.remote.ProtocolHandshake createSession
-INFO: Detected dialect: W3C
-</system-err>
-  </testcase>
+  <testcase classname="SIEV.test.Tests" name="InvoiceStructureSIEVTest" time="10.684"/>
 </testsuite>
