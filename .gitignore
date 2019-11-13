@@ -14,3 +14,9 @@ buildNumber.properties
 
 #Ignoring result of test
 /SeleniumTest/target/
+/SeleniumTest/target/surefire-reports/
+/SeleniumTest/target/surefire-reports/junitreports/
+/SeleniumTest/target/surefire-reports/old/SIEV.test.Tests/
+/SeleniumTest/target/surefire-reports/SIEV.test.Tests/
+/SeleniumTest/target/test-classes/
+/SeleniumTest/target/test-classes/SIEV/helpers/

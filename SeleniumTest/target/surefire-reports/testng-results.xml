@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="SIEV.test.Tests" duration-ms="18475" started-at="2019-11-12T16:57:17Z" finished-at="2019-11-12T16:57:35Z">
+  <suite name="SIEV.test.Tests" duration-ms="80967" started-at="2019-11-13T15:41:40Z" finished-at="2019-11-13T15:43:01Z">
     <groups>
     </groups>
-    <test name="Command line test" duration-ms="18475" started-at="2019-11-12T16:57:17Z" finished-at="2019-11-12T16:57:35Z">
+    <test name="Command line test" duration-ms="80967" started-at="2019-11-13T15:41:40Z" finished-at="2019-11-13T15:43:01Z">
       <class name="SIEV.test.Tests">
-        <test-method status="PASS" signature="init()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="init" is-config="true" duration-ms="7718" started-at="2019-11-12T16:57:17Z" finished-at="2019-11-12T16:57:24Z">
+        <test-method status="PASS" signature="init()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="init" is-config="true" duration-ms="12645" started-at="2019-11-13T15:41:40Z" finished-at="2019-11-13T15:41:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method status="PASS" signature="InvoiceStructureSIEVTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="InvoiceStructureSIEVTest" duration-ms="10683" started-at="2019-11-12T16:57:24Z" finished-at="2019-11-12T16:57:35Z">
+        <test-method status="PASS" signature="InvoiceStructureSIEVTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="InvoiceStructureSIEVTest" duration-ms="65981" started-at="2019-11-13T15:41:53Z" finished-at="2019-11-13T15:42:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- InvoiceStructureSIEVTest -->
-        <test-method status="PASS" signature="endTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="endTest" is-config="true" duration-ms="54" started-at="2019-11-12T16:57:35Z" finished-at="2019-11-12T16:57:35Z">
+        <test-method status="PASS" signature="endTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="endTest" is-config="true" duration-ms="2322" started-at="2019-11-13T15:42:59Z" finished-at="2019-11-13T15:43:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endTest -->
