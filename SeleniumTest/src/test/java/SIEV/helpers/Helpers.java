@@ -67,9 +67,11 @@ public class Helpers {
 		public static final String LUGAR_NACIMIENTO_VALUE = "CAMPECHE";
 		public static final String SEXO_VALUE = "Mujer";
 		
-		
+		public static final String DEFAULT_SELECTION_DROP = "-Seleccion";
 		public static final String DEFAULT_REASON = "Justificacion";
 		public static final int INVOICE_BEGIN_INDEX = 8; 
+		public static final String CLASS_ATTRIBUTE = "class";
+		public static final String ERROR_STATE ="ui-state-error";
 		
 		
 		/*Helper Methods*/

@@ -84,6 +84,17 @@ public class Tests {
 		pageEvaluacion.assertFoliosPorRegion(folioA,folioB);
 	}*/
 	
+	// TCS-28
+	@Test
+	public void assertMandatoryDataTest() {
+		PageLogin pageLogin = new PageLogin(driver);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
+		pageEvaluacion.assertEmptyFields();
+	}
+	
 	@AfterMethod
 	public void endTest() {
 		driver.close();

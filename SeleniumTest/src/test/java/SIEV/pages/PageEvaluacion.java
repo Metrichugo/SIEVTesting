@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
@@ -29,9 +30,13 @@ public class PageEvaluacion {
 	/*By for reset form*/
 	private By resetForm;
 	/*By's for Validar Adeudos*/
-	private By capturaTicketsButton,noValidarButton,razonAdeudo,nuevaValidacion,firmaFButton,aceptaEvaluacionButton;
+	private By capturaTicketsButton,noValidarButton,razonAdeudo,nuevaValidacion,aceptaEvaluacionButton;
 	/*By's for Datos Personales*/
-	private By lugarNacimientoTypeDrop,sexoTypeDrop,curpField,tipoIdentTypeDrop;
+	private By lugarNacimientoTypeDrop,lugarNacimientoDiv,sexoTypeDrop,sexoDiv,curpField,tipoIdentTypeDrop,tipoIdentDiv,folioIdentField,mailField,mailConfirmField;
+	/*By's for Domicilio*/
+	private By telefonoField, entreCalleAField, entreCalleBField;
+	/*By's for Ocupación*/
+	private By puestoField, telefonoTrabajoField,empresaField,generarSISACTButton;
 	
 	
 	public PageEvaluacion (WebDriver driver) {
@@ -69,9 +74,22 @@ public class PageEvaluacion {
 		nuevaValidacion = By.id("ticketsForm:j_idt313");
 		aceptaEvaluacionButton = By.id("formSiev:resultadoForm:aceptaEval");
 		lugarNacimientoTypeDrop = By.id("datosClienteForm2:cmbLugNac_input");
+		lugarNacimientoDiv = By.id("datosClienteForm2:cmbLugNac");
 		sexoTypeDrop = By.id("datosClienteForm2:cmbSexo_input");
+		sexoDiv = By.id("datosClienteForm2:cmbSexo");
 		curpField = By.id("datosClienteForm2:txtCurp");
 		tipoIdentTypeDrop = By.id("datosClienteForm2:cmbTipIdent_input");
+		tipoIdentDiv = By.id("datosClienteForm2:cmbTipIdent");
+		folioIdentField = By.id("datosClienteForm2:txtFolIdent");
+		mailField = By.id("datosClienteForm2:txtEmail");
+		mailConfirmField = By.id("datosClienteForm2:txtEmail2");
+		telefonoField = By.id("datosClienteForm2:txtTelDom1");
+		entreCalleAField = By.id("datosClienteForm2:txtEntre");
+		entreCalleBField = By.id("datosClienteForm2:txtEntreY");
+		puestoField = By.id("datosClienteForm2:txtOcupacionPuesto");
+		telefonoTrabajoField = By.id("datosClienteForm2:txtDeTelefono");
+		empresaField = By.id("datosClienteForm2:txtEmpresa");
+		generarSISACTButton = By.id("datosClienteForm2:btnGenFolSisact");
 	}
 
 	
@@ -179,7 +197,47 @@ public class PageEvaluacion {
 		Helpers.threadSleep(Helpers.tinySeconds);
 		autorizaEvaluacion();
 		driver.findElement(aceptaEvaluacionButton).click();
-		Helpers.threadSleep(Helpers.defaultSeconds);
-		
+		Helpers.threadSleep(Helpers.defaultSeconds);		
 	}
+	
+	
+	public void assertEmptyFields() {
+		assertEstructuraFolioSIEV();
+		capturarTicketsAdeudo();
+		Helpers.threadSleep(Helpers.longSeconds);
+		Assert.assertTrue(new Select(driver.findElement(lugarNacimientoTypeDrop)).getFirstSelectedOption().getText().contains(Helpers.EvaluacionPageHelpers.DEFAULT_SELECTION_DROP));
+		Assert.assertTrue(new Select(driver.findElement(sexoTypeDrop)).getFirstSelectedOption().getText().contains(Helpers.EvaluacionPageHelpers.DEFAULT_SELECTION_DROP));
+		Assert.assertTrue(driver.findElement(curpField).getText().isEmpty());		
+		Assert.assertTrue(new Select(driver.findElement(tipoIdentTypeDrop)).getFirstSelectedOption().getText().contains(Helpers.EvaluacionPageHelpers.DEFAULT_SELECTION_DROP));
+		Assert.assertTrue(driver.findElement(folioIdentField).getText().isEmpty());
+		Assert.assertTrue(driver.findElement(mailField).getText().isEmpty());
+		Assert.assertTrue(driver.findElement(mailConfirmField).getText().isEmpty());
+		Assert.assertTrue(driver.findElement(telefonoField).getText().isEmpty());
+		Assert.assertTrue(driver.findElement(entreCalleAField).getText().isEmpty());
+		Assert.assertTrue(driver.findElement(entreCalleBField).getText().isEmpty());
+		Assert.assertTrue(driver.findElement(puestoField).getText().isEmpty());
+		Assert.assertTrue(driver.findElement(telefonoTrabajoField).getText().isEmpty());
+		Assert.assertTrue(driver.findElement(empresaField).getText().isEmpty());
+		Helpers.threadSleep(Helpers.defaultSeconds);
+		driver.findElement(generarSISACTButton).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
+		Assert.assertTrue(checkUIStateError(lugarNacimientoDiv));
+		Assert.assertTrue(checkUIStateError(sexoDiv));
+		Assert.assertTrue(checkUIStateError(curpField));
+		Assert.assertTrue(checkUIStateError(tipoIdentDiv));
+		Assert.assertTrue(checkUIStateError(folioIdentField));
+		Assert.assertTrue(checkUIStateError(mailField));
+		Assert.assertTrue(checkUIStateError(mailConfirmField));
+		Assert.assertTrue(checkUIStateError(telefonoField));
+		Assert.assertTrue(checkUIStateError(entreCalleAField));
+		Assert.assertTrue(checkUIStateError(entreCalleBField));
+		Assert.assertTrue(checkUIStateError(puestoField));
+		Assert.assertTrue(checkUIStateError(telefonoTrabajoField));
+		Assert.assertTrue(checkUIStateError(empresaField));
+	}
+
+	private boolean checkUIStateError(By byCondition) {
+		return driver.findElement(byCondition).getAttribute(Helpers.EvaluacionPageHelpers.CLASS_ATTRIBUTE).contains(Helpers.EvaluacionPageHelpers.ERROR_STATE);
+	}
+	
 }

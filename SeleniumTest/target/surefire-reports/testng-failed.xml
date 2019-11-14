@@ -5,8 +5,8 @@
     <classes>
       <class name="SIEV.test.Tests">
         <methods>
+          <include name="assertMandatoryDataTest"/>
           <include name="endTest"/>
-          <include name="InvoicePerRegionSIEVTest"/>
           <include name="init"/>
         </methods>
       </class> <!-- SIEV.test.Tests -->
