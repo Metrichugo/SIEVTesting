@@ -26,6 +26,13 @@ public class PageEvaluacion {
 	private By tarjetaTypeDrop,creditoAutoTypeDrop,creditoBancarioTypeDrop;
 	/*By's for Autorizacion Evaluación*/
 	private By authButtonOne,authButtonTwo,evaluacionButton,firmaFisicaButton,confirmPreEvalButton,documentLink,confirmEvalButton,folioSIEVResult;
+	/*By for reset form*/
+	private By resetForm;
+	/*By's for Validar Adeudos*/
+	private By capturaTicketsButton,noValidarButton,razonAdeudo,nuevaValidacion,firmaFButton,aceptaEvaluacionButton;
+	/*By's for Datos Personales*/
+	private By lugarNacimientoTypeDrop,sexoTypeDrop,curpField,tipoIdentTypeDrop;
+	
 	
 	public PageEvaluacion (WebDriver driver) {
 		this.driver = driver;
@@ -55,17 +62,37 @@ public class PageEvaluacion {
 		documentLink = By.xpath("/html/body/center[2]/form[4]/div[6]/div[2]/a");
 		confirmEvalButton = By.id("formDlg:btnSiEvalua");
 		folioSIEVResult = By.id("formSiev:resultadoForm:j_idt199");
+		resetForm = By.id("formSiev:cleanBtn");
+		capturaTicketsButton = By.id("formSiev:resultadoForm:btnTicketsAdeudo");
+		noValidarButton = By.id("ticketsForm:j_idt308");
+		razonAdeudo = By.id("ticketsForm:txtRAzonAdeudo");
+		nuevaValidacion = By.id("ticketsForm:j_idt313");
+		aceptaEvaluacionButton = By.id("formSiev:resultadoForm:aceptaEval");
+		lugarNacimientoTypeDrop = By.id("datosClienteForm2:cmbLugNac_input");
+		sexoTypeDrop = By.id("datosClienteForm2:cmbSexo_input");
+		curpField = By.id("datosClienteForm2:txtCurp");
+		tipoIdentTypeDrop = By.id("datosClienteForm2:cmbTipIdent_input");
 	}
 
 	
-	public void assertEstructuraFolioSIEV() {
+	public String assertEstructuraFolioSIEV() {
 		setMovimiento();
 		setTipoMovimiento();
 		setEvaluacion();
 		setDatosPersonales();
 		setDomicilio();
 		setInformacionCrediticia();
-		autorizaEvaluacion();
+		preAutroizaEvaluacion();
+		return autorizaEvaluacion();
+	}
+	
+	public void resetForm() {
+		driver.findElement(resetForm).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
+	}
+	
+	public void assertFoliosPorRegion(String folioA, String folioB) {
+		Assert.assertTrue(Integer.parseInt(folioA.substring(Helpers.EvaluacionPageHelpers.INVOICE_BEGIN_INDEX)) < Integer.parseInt(folioB.substring(Helpers.EvaluacionPageHelpers.INVOICE_BEGIN_INDEX)));
 	}
 	
 	private void setMovimiento() {
@@ -101,9 +128,9 @@ public class PageEvaluacion {
 		driver.findElement(secondNameField).sendKeys(Helpers.EvaluacionPageHelpers.SECOND_NAME_VALUE);
 		driver.findElement(fecNacField).sendKeys(Helpers.EvaluacionPageHelpers.FEC_NAC_VALUE);
 		driver.findElement(rfcButton).click();
-		Helpers.threadSleep(2);
+		Helpers.threadSleep(Helpers.tinySeconds);
 		driver.findElement(fillDomicilioButton).click();	
-		Helpers.threadSleep(1);
+		Helpers.threadSleep(Helpers.defaultSeconds);
 	}
 	
 	private void setDomicilio() {
@@ -119,22 +146,40 @@ public class PageEvaluacion {
 		creditoBanco.selectByVisibleText(Helpers.EvaluacionPageHelpers.CREDITO_BANCO);
 	}
 	
-	private void autorizaEvaluacion() {
+	private void preAutroizaEvaluacion() {
 		driver.findElement(authButtonOne).click();
 		driver.findElement(authButtonTwo).click();
-		Helpers.threadSleep(3);
+		Helpers.threadSleep(Helpers.tinySeconds);
 		driver.findElement(evaluacionButton).click();
-		Helpers.threadSleep(3);
+		Helpers.threadSleep(Helpers.tinySeconds);
+	}
+	
+	private String autorizaEvaluacion() {
 		driver.findElement(firmaFisicaButton).click();
-		Helpers.threadSleep(2);
+		Helpers.threadSleep(Helpers.tinySeconds);
 		driver.findElement(confirmPreEvalButton).click();
-		Helpers.threadSleep(2);
+		Helpers.threadSleep(Helpers.tinySeconds);
 		driver.findElement(documentLink).click();
-		Helpers.threadSleep(8);
+		Helpers.threadSleep(Helpers.mediumSeconds);
 		driver.findElement(confirmEvalButton).click();
-		Helpers.threadSleep(10);
+		Helpers.threadSleep(Helpers.longSeconds);
 		Pattern pattern = Pattern.compile(new Helpers().new EvaluacionPageHelpers().getInvoicePattern(), Pattern.MULTILINE);
 		Matcher matcher = pattern.matcher(driver.findElement(folioSIEVResult).getText());		
 		Assert.assertTrue(matcher.matches());
+		return driver.findElement(folioSIEVResult).getText();
+	}
+	
+	private void capturarTicketsAdeudo(){
+		driver.findElement(capturaTicketsButton).click();
+		Helpers.threadSleep(Helpers.defaultSeconds);
+		driver.findElement(noValidarButton).click();
+		Helpers.threadSleep(Helpers.defaultSeconds);
+		driver.findElement(razonAdeudo).sendKeys(Helpers.EvaluacionPageHelpers.DEFAULT_REASON);
+		driver.findElement(nuevaValidacion).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
+		autorizaEvaluacion();
+		driver.findElement(aceptaEvaluacionButton).click();
+		Helpers.threadSleep(Helpers.defaultSeconds);
+		
 	}
 }

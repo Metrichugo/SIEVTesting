@@ -6,6 +6,11 @@ import java.util.Date;
 public class Helpers {
 
 	public static final int defaultMillis = 500;
+	public static final int defaultSeconds = 1;
+	public static final int tinySeconds = 3;
+	public static final int shortSeconds = 8;
+	public static final int mediumSeconds = 10;
+	public static final int longSeconds = 25;
 	
 	public static void threadSleep(int seconds) {
 		try {
@@ -58,7 +63,14 @@ public class Helpers {
 		public static final String TARJETA_VALUE = "NO";
 		public static final String CREDITO_AUTO = "No tiene cuenta automotriz";
 		public static final String CREDITO_BANCO = "No tiene cuenta bancaria";
-	
+		/*Información Personal*/
+		public static final String LUGAR_NACIMIENTO_VALUE = "CAMPECHE";
+		public static final String SEXO_VALUE = "Mujer";
+		
+		
+		public static final String DEFAULT_REASON = "Justificacion";
+		public static final int INVOICE_BEGIN_INDEX = 8; 
+		
 		
 		/*Helper Methods*/
 		public String getInvoicePattern() {

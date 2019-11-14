@@ -60,7 +60,7 @@ public class Tests {
 	}*/
 	
 	// TCS-27
-	@Test
+	/*@Test
 	public void InvoiceStructureSIEVTest() {
 		PageLogin pageLogin = new PageLogin(driver);
 		pageLogin.Login();
@@ -69,6 +69,20 @@ public class Tests {
 		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
 		pageEvaluacion.assertEstructuraFolioSIEV();
 	}
+	
+	// TCS-44
+	@Test
+	public void InvoicePerRegionSIEVTest() {
+		PageLogin pageLogin = new PageLogin(driver);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion =  new PageEvaluacion(driver);
+		String folioA = pageEvaluacion.assertEstructuraFolioSIEV();
+		pageEvaluacion.resetForm();
+		String folioB = pageEvaluacion.assertEstructuraFolioSIEV();
+		pageEvaluacion.assertFoliosPorRegion(folioA,folioB);
+	}*/
 	
 	@AfterMethod
 	public void endTest() {
