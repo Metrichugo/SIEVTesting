@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="SIEV.test.Tests" duration-ms="153076" started-at="2019-11-14T20:00:50Z" finished-at="2019-11-14T20:03:23Z">
+  <suite name="SIEV.test.Tests" duration-ms="148669" started-at="2019-11-15T21:58:37Z" finished-at="2019-11-15T22:01:05Z">
     <groups>
     </groups>
-    <test name="Command line test" duration-ms="153076" started-at="2019-11-14T20:00:50Z" finished-at="2019-11-14T20:03:23Z">
+    <test name="Command line test" duration-ms="148669" started-at="2019-11-15T21:58:37Z" finished-at="2019-11-15T22:01:05Z">
       <class name="SIEV.test.Tests">
-        <test-method status="PASS" signature="init()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="init" is-config="true" duration-ms="8152" started-at="2019-11-14T20:00:50Z" finished-at="2019-11-14T20:00:58Z">
+        <test-method status="PASS" signature="init()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="init" is-config="true" duration-ms="8318" started-at="2019-11-15T21:58:37Z" finished-at="2019-11-15T21:58:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method status="PASS" signature="assertMandatoryDataTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="assertMandatoryDataTest" duration-ms="142577" started-at="2019-11-14T20:00:58Z" finished-at="2019-11-14T20:03:21Z">
+        <test-method status="PASS" signature="assertValidPhoneNumber()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="assertValidPhoneNumber" duration-ms="138008" started-at="2019-11-15T21:58:45Z" finished-at="2019-11-15T22:01:03Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- assertMandatoryDataTest -->
-        <test-method status="PASS" signature="endTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="endTest" is-config="true" duration-ms="2327" started-at="2019-11-14T20:03:21Z" finished-at="2019-11-14T20:03:23Z">
+        </test-method> <!-- assertValidPhoneNumber -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="endTest" is-config="true" duration-ms="2324" started-at="2019-11-15T22:01:03Z" finished-at="2019-11-15T22:01:05Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endTest -->

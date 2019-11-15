@@ -1,8 +1,12 @@
 package SIEV.test;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -85,7 +89,7 @@ public class Tests {
 	}*/
 	
 	// TCS-28
-	@Test
+	/*@Test
 	public void assertMandatoryDataTest() {
 		PageLogin pageLogin = new PageLogin(driver);
 		pageLogin.Login();
@@ -94,6 +98,39 @@ public class Tests {
 		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
 		pageEvaluacion.assertEmptyFields();
 	}
+	
+	// TCS-31
+	@Test
+	public void assertValidMail() {
+		PageLogin pageLogin = new PageLogin(driver);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
+		pageEvaluacion.assertValidMail();
+	}
+	
+	// TCS-32
+	@Test
+	public void assertValidPhoneNumber() {
+		PageLogin pageLogin = new PageLogin(driver);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
+		pageEvaluacion.assertValidPhoneNumber();
+	}
+	
+	// TCS-33
+	@Test
+	public void assertValidWorkPhoneNumber() {
+		PageLogin pageLogin = new PageLogin(driver);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
+		pageEvaluacion.assertValidWorkPhoneNumber();
+	}*/
 	
 	@AfterMethod
 	public void endTest() {

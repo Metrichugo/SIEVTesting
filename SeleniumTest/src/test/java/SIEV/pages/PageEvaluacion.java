@@ -37,6 +37,8 @@ public class PageEvaluacion {
 	private By telefonoField, entreCalleAField, entreCalleBField;
 	/*By's for Ocupación*/
 	private By puestoField, telefonoTrabajoField,empresaField,generarSISACTButton;
+	/*By's for Referencias*/
+	private By agregarReferenciaButton;
 	
 	
 	public PageEvaluacion (WebDriver driver) {
@@ -90,6 +92,7 @@ public class PageEvaluacion {
 		telefonoTrabajoField = By.id("datosClienteForm2:txtDeTelefono");
 		empresaField = By.id("datosClienteForm2:txtEmpresa");
 		generarSISACTButton = By.id("datosClienteForm2:btnGenFolSisact");
+		agregarReferenciaButton = By.id("datosClienteForm2:tblReferencias:j_idt278");
 	}
 
 	
@@ -119,7 +122,7 @@ public class PageEvaluacion {
 		Helpers.threadSleep(2);
 		Select canal = new Select(driver.findElement(canalTypeDrop));
 		canal.selectByVisibleText(Helpers.EvaluacionPageHelpers.CANAL_VALUE);
-		Helpers.threadSleepMillis(800);
+		Helpers.threadSleepMillis(900);
 		Select fuerzaVenta = new Select(driver.findElement(fuerzaVTypeDrop));
 		fuerzaVenta.selectByVisibleText(Helpers.EvaluacionPageHelpers.FUERZA_VENTA_VALUE);
 	}
@@ -234,6 +237,56 @@ public class PageEvaluacion {
 		Assert.assertTrue(checkUIStateError(puestoField));
 		Assert.assertTrue(checkUIStateError(telefonoTrabajoField));
 		Assert.assertTrue(checkUIStateError(empresaField));
+	}
+	
+	public void assertValidMail() {
+		assertEstructuraFolioSIEV();
+		capturarTicketsAdeudo();
+		Helpers.threadSleep(Helpers.longSeconds);
+		Pattern pattern = Pattern.compile(Helpers.EvaluacionPageHelpers.VALID_MAIL_REGEX);
+		driver.findElement(mailField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_MAIL_VALUE);
+		Matcher matcher = pattern.matcher(driver.findElement(mailField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		Assert.assertTrue(matcher.matches());
+		driver.findElement(mailField).clear();
+		driver.findElement(mailField).sendKeys(Helpers.EvaluacionPageHelpers.INVALID_MAIL_VALUE);
+		matcher = pattern.matcher(driver.findElement(mailField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		Assert.assertFalse(matcher.matches());
+	}
+	
+	public void assertValidPhoneNumber() {
+		assertEstructuraFolioSIEV();
+		capturarTicketsAdeudo();
+		Helpers.threadSleep(Helpers.longSeconds);
+		Pattern pattern = Pattern.compile(Helpers.EvaluacionPageHelpers.VALID_PHONE_REGEX,Pattern.MULTILINE);
+		driver.findElement(telefonoField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
+		Matcher matcher = pattern.matcher(driver.findElement(telefonoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		Assert.assertTrue(matcher.matches());
+		driver.findElement(telefonoField).clear();
+		driver.findElement(telefonoField).sendKeys(Helpers.EvaluacionPageHelpers.INVALID_PHONE_VALUE);
+		Helpers.threadSleepMillis(Helpers.defaultMillis);
+		matcher = pattern.matcher(driver.findElement(telefonoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		Assert.assertFalse(matcher.matches());
+	}
+	
+	public void assertValidWorkPhoneNumber() {
+		assertEstructuraFolioSIEV();
+		capturarTicketsAdeudo();
+		Helpers.threadSleep(Helpers.longSeconds);
+		Pattern pattern = Pattern.compile(Helpers.EvaluacionPageHelpers.VALID_PHONE_REGEX,Pattern.MULTILINE);
+		driver.findElement(telefonoTrabajoField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
+		Matcher matcher = pattern.matcher(driver.findElement(telefonoTrabajoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		Assert.assertTrue(matcher.matches());
+		driver.findElement(telefonoTrabajoField).clear();
+		driver.findElement(telefonoTrabajoField).sendKeys(Helpers.EvaluacionPageHelpers.INVALID_PHONE_VALUE);
+		Helpers.threadSleep(Helpers.tinySeconds);
+		matcher = pattern.matcher(driver.findElement(telefonoTrabajoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		Assert.assertFalse(matcher.matches());
+	}
+	
+	public void assertAddReferences() {
+		assertEstructuraFolioSIEV();
+		capturarTicketsAdeudo();
+		Helpers.threadSleep(Helpers.longSeconds);
 	}
 
 	private boolean checkUIStateError(By byCondition) {

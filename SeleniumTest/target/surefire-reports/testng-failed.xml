@@ -5,9 +5,9 @@
     <classes>
       <class name="SIEV.test.Tests">
         <methods>
-          <include name="assertMandatoryDataTest"/>
           <include name="endTest"/>
           <include name="init"/>
+          <include name="assertValidMail"/>
         </methods>
       </class> <!-- SIEV.test.Tests -->
     </classes>
