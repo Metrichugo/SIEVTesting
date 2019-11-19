@@ -130,7 +130,7 @@ public class Tests {
 		pageHome.openEvaluationMenu();
 		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
 		pageEvaluacion.assertValidWorkPhoneNumber();
-	}*/
+	}
 	
 	// TCS-34
 	@Test
@@ -144,7 +144,7 @@ public class Tests {
 	}
 	
 	// TCS-35
-	/*@Test
+	@Test
 	public void assertAltaReferencias() {
 		PageLogin pageLogin = new PageLogin(driver);
 		pageLogin.Login();
@@ -155,7 +155,7 @@ public class Tests {
 	}*/
 	
 	// TCS-36
-	/*@Test
+	@Test
 	public void assertFolioSISACT() {
 		PageLogin pageLogin = new PageLogin(driver);
 		pageLogin.Login();
@@ -163,7 +163,7 @@ public class Tests {
 		pageHome.openEvaluationMenu();
 		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
 		pageEvaluacion.assertGenerarFolioSISACT();
-	}*/
+	}
 	
 	// TCS-37
 	/*@Test

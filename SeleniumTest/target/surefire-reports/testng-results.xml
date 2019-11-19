@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="SIEV.test.Tests" duration-ms="157583" started-at="2019-11-19T17:18:47Z" finished-at="2019-11-19T17:21:24Z">
+  <suite name="SIEV.test.Tests" duration-ms="181457" started-at="2019-11-19T17:50:37Z" finished-at="2019-11-19T17:53:38Z">
     <groups>
     </groups>
-    <test name="Command line test" duration-ms="157583" started-at="2019-11-19T17:18:47Z" finished-at="2019-11-19T17:21:24Z">
+    <test name="Command line test" duration-ms="181457" started-at="2019-11-19T17:50:37Z" finished-at="2019-11-19T17:53:38Z">
       <class name="SIEV.test.Tests">
-        <test-method status="PASS" signature="init()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="init" is-config="true" duration-ms="9315" started-at="2019-11-19T17:18:47Z" finished-at="2019-11-19T17:18:56Z">
+        <test-method status="PASS" signature="init()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="init" is-config="true" duration-ms="9081" started-at="2019-11-19T17:50:37Z" finished-at="2019-11-19T17:50:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method status="PASS" signature="assertValidReferencePhoneNumber()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="assertValidReferencePhoneNumber" duration-ms="145925" started-at="2019-11-19T17:18:56Z" finished-at="2019-11-19T17:21:22Z">
+        <test-method status="PASS" signature="assertAltaReferencias()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="assertAltaReferencias" duration-ms="170033" started-at="2019-11-19T17:50:46Z" finished-at="2019-11-19T17:53:36Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- assertValidReferencePhoneNumber -->
-        <test-method status="PASS" signature="endTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="endTest" is-config="true" duration-ms="2325" started-at="2019-11-19T17:21:22Z" finished-at="2019-11-19T17:21:24Z">
+        </test-method> <!-- assertAltaReferencias -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:SIEV.test.Tests@2acf57e3]" name="endTest" is-config="true" duration-ms="2323" started-at="2019-11-19T17:53:36Z" finished-at="2019-11-19T17:53:38Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endTest -->

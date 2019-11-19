@@ -38,7 +38,7 @@ public class PageEvaluacion {
 	/*By's for Ocupación*/
 	private By puestoField, telefonoTrabajoField,empresaField,generarSISACTButton;
 	/*By's for Referencias*/
-	private By agregarReferenciaButton,nombreRefField,apellidosRefField,telefonoRefField,telOficinaRefField,addRefButton;
+	private By agregarReferenciaButton,nombreRefField,apellidosRefField,telefonoRefField,telOficinaRefField,addRefButton,nombreRefAdded,apellidosRefAdded,telefonoRefAdded;
 	
 	
 	public PageEvaluacion (WebDriver driver) {
@@ -100,6 +100,9 @@ public class PageEvaluacion {
 		telefonoRefField = By.id("dlgRfrForm:txtTelDomRfr");
 		telOficinaRefField = By.id("dlgRfrForm:txtTelOfiRfr");
 		addRefButton = By.id("dlgRfrForm:btnAddUpdRfr");
+		nombreRefAdded = By.id("datosClienteForm2:tblReferencias:0:j_idt280");
+		apellidosRefAdded = By.id("datosClienteForm2:tblReferencias:0:j_idt282");
+		telefonoRefAdded = By.id("datosClienteForm2:tblReferencias:0:j_idt284");
 	}
 
 	
@@ -342,7 +345,10 @@ public class PageEvaluacion {
 		Helpers.threadSleep(Helpers.tinySeconds);
 		capturaDatosReferencia();
 		driver.findElement(addRefButton).click();
-		//Assert.assertTrue(condition);
+		Helpers.threadSleep(Helpers.tinySeconds);
+		Assert.assertTrue(driver.findElement(nombreRefAdded).getText().contains(Helpers.EvaluacionPageHelpers.NOMBRE_REF_VALUE));
+		Assert.assertTrue(driver.findElement(apellidosRefAdded).getText().contains(Helpers.EvaluacionPageHelpers.APELLIDOS_REF_VALUE));
+		Assert.assertTrue(driver.findElement(telefonoRefAdded).getText().contains(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE));
 	}
 	
 	public void assertGenerarFolioSISACT() {
@@ -371,7 +377,7 @@ public class PageEvaluacion {
 		Assert.assertTrue(isFieldEmpty(rfcField));
 		Assert.assertTrue(driver.findElements(formDireccion).isEmpty());
 	}
-
+	
 	private boolean isFieldEmpty(By byField) {
 		return driver.findElement(byField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty();
 	}
