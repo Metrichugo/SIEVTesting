@@ -155,7 +155,7 @@ public class Tests {
 	}*/
 	
 	// TCS-36
-	@Test
+	/*@Test
 	public void assertFolioSISACT() {
 		PageLogin pageLogin = new PageLogin(driver);
 		pageLogin.Login();
@@ -163,7 +163,7 @@ public class Tests {
 		pageHome.openEvaluationMenu();
 		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
 		pageEvaluacion.assertGenerarFolioSISACT();
-	}
+	}*/
 	
 	// TCS-37
 	/*@Test
@@ -175,6 +175,50 @@ public class Tests {
 		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
 		pageEvaluacion.assertClearScreen();
 	}*/
+	
+	// TCS-39
+	/*@Test
+	public void assertBuroCredito() {
+		PageLogin pageLogin = new PageLogin(driver);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
+		pageEvaluacion.assertBuroCredito();
+	}*/
+	
+	// TCS-40
+	/*@Test
+	public void assertDenyBuroCredito() {
+		PageLogin pageLogin = new PageLogin(driver);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
+		pageEvaluacion.assertDenyBuroCredito();
+	}*/
+	
+	// TCS-41
+	/*@Test
+	public void assertCanalVenta() {
+		PageLogin pageLogin = new PageLogin(driver);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
+		pageEvaluacion.assertProyectoCanalVenta();
+	}*/
+	
+	// TCS-61
+	@Test
+	public void assertPreventDoubleClick() {
+		PageLogin pageLogin = new PageLogin(driver);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
+		pageEvaluacion.assertPreventDoubleClick();
+	}
 	
 	@AfterMethod
 	public void endTest() {

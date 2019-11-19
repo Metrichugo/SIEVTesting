@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
@@ -13,35 +14,40 @@ import SIEV.helpers.Helpers;
 
 public class PageEvaluacion {
 	private WebDriver driver;
-	/*By's for Movimiento*/
-	private By regionTypeDrop,canalTypeDrop,fuerzaVTypeDrop;
-	/*By's for Tipo Movimiento*/
-	private By movimientoTypeDrop,proyectoTypeDrop;
-	/*By's for Evaluacion*/
-	private By tipoPlazoTypeDrop,formaPagoTypeDrop;
-	/*By's for Datos Personales*/
-	private By lastNameField,secondLastNameField,firstNameField,secondNameField,fecNacField,rfcButton,rfcField,fillDomicilioButton;
-	/*By's for Domicilio*/
-	private By contactoField,formDireccion;
-	/*By's for Informacion Crediticia*/
-	private By tarjetaTypeDrop,creditoAutoTypeDrop,creditoBancarioTypeDrop;
-	/*By's for Autorizacion Evaluación*/
-	private By authButtonOne,authButtonTwo,evaluacionButton,firmaFisicaButton,confirmPreEvalButton,documentLink,confirmEvalButton,folioSIEVResult;
-	/*By for reset form*/
+	/* By's for Movimiento */
+	private By regionTypeDrop, canalTypeDrop, fuerzaVTypeDrop;
+	/* By's for Tipo Movimiento */
+	private By movimientoTypeDrop, proyectoTypeDrop;
+	/* By's for Evaluacion */
+	private By tipoPlazoTypeDrop, formaPagoTypeDrop;
+	/* By's for Datos Personales */
+	private By lastNameField, secondLastNameField, firstNameField, secondNameField, fecNacField, rfcButton, rfcField,
+			fillDomicilioButton;
+	/* By's for Domicilio */
+	private By contactoField, formDireccion;
+	/* By's for Informacion Crediticia */
+	private By tarjetaTypeDrop, creditoAutoTypeDrop, creditoBancarioTypeDrop;
+	/* By's for Autorizacion Evaluación */
+	private By authButtonOne, authButtonTwo, evaluacionButton, firmaFisicaButton, confirmPreEvalButton, documentLink,
+			confirmEvalButton, folioSIEVResult;
+	/* By for reset form */
 	private By resetForm;
-	/*By's for Validar Adeudos*/
-	private By capturaTicketsButton,noValidarButton,razonAdeudo,nuevaValidacion,aceptaEvaluacionButton;
-	/*By's for Datos Personales*/
-	private By lugarNacimientoTypeDrop,lugarNacimientoDiv,sexoTypeDrop,sexoDiv,curpField,tipoIdentTypeDrop,tipoIdentDiv,folioIdentField,mailField,mailConfirmField;
-	/*By's for Domicilio*/
+	/* By's for Validar Adeudos */
+	private By capturaTicketsButton, noValidarButton, razonAdeudo, nuevaValidacion, aceptaEvaluacionButton;
+	/* By's for Datos Personales */
+	private By lugarNacimientoTypeDrop, lugarNacimientoDiv, sexoTypeDrop, sexoDiv, curpField, tipoIdentTypeDrop,
+			tipoIdentDiv, folioIdentField, mailField, mailConfirmField;
+	/* By's for Domicilio */
 	private By telefonoField, entreCalleAField, entreCalleBField;
-	/*By's for Ocupación*/
-	private By puestoField, telefonoTrabajoField,empresaField,generarSISACTButton;
-	/*By's for Referencias*/
-	private By agregarReferenciaButton,nombreRefField,apellidosRefField,telefonoRefField,telOficinaRefField,addRefButton,nombreRefAdded,apellidosRefAdded,telefonoRefAdded;
-	
-	
-	public PageEvaluacion (WebDriver driver) {
+	/* By's for Ocupación */
+	private By puestoField, telefonoTrabajoField, empresaField, generarSISACTButton;
+	/* By's for Referencias */
+	private By agregarReferenciaButton, nombreRefField, apellidosRefField, telefonoRefField, telOficinaRefField,
+			addRefButton, nombreRefAdded, apellidosRefAdded, telefonoRefAdded;
+	/* Others By's*/
+	private By authBuroButton,resultBuro,resultEvaluacion,confirmaEvalSinBC;
+
+	public PageEvaluacion(WebDriver driver) {
 		this.driver = driver;
 		regionTypeDrop = By.id("formSiev:region_input");
 		canalTypeDrop = By.id("formSiev:canalVenta_input");
@@ -103,9 +109,12 @@ public class PageEvaluacion {
 		nombreRefAdded = By.id("datosClienteForm2:tblReferencias:0:j_idt280");
 		apellidosRefAdded = By.id("datosClienteForm2:tblReferencias:0:j_idt282");
 		telefonoRefAdded = By.id("datosClienteForm2:tblReferencias:0:j_idt284");
+		resultEvaluacion = By.id("formSiev:REST");
+		resultBuro = By.id("formSiev:RESbURO");
+		authBuroButton = By.id("formSiev:j_idt142");
+		confirmaEvalSinBC = By.id("formDlg:btnSiConfirmaSinBc");
 	}
 
-	
 	public String assertEstructuraFolioSIEV() {
 		setMovimiento();
 		setTipoMovimiento();
@@ -116,16 +125,16 @@ public class PageEvaluacion {
 		preAutroizaEvaluacion();
 		return autorizaEvaluacion();
 	}
-	
+
 	public void resetForm() {
 		driver.findElement(resetForm).click();
 		Helpers.threadSleep(Helpers.tinySeconds);
 	}
-	
+
 	public void assertFoliosPorRegion(String folioA, String folioB) {
 		Assert.assertTrue(Integer.parseInt(folioA.substring(Helpers.EvaluacionPageHelpers.INVOICE_BEGIN_INDEX)) < Integer.parseInt(folioB.substring(Helpers.EvaluacionPageHelpers.INVOICE_BEGIN_INDEX)));
 	}
-	
+
 	private void setMovimiento() {
 		Select region = new Select(driver.findElement(regionTypeDrop));
 		region.selectByVisibleText(Helpers.EvaluacionPageHelpers.REGION_VALUE);
@@ -136,21 +145,21 @@ public class PageEvaluacion {
 		Select fuerzaVenta = new Select(driver.findElement(fuerzaVTypeDrop));
 		fuerzaVenta.selectByVisibleText(Helpers.EvaluacionPageHelpers.FUERZA_VENTA_VALUE);
 	}
-	
+
 	private void setTipoMovimiento() {
 		Select movimiento = new Select(driver.findElement(movimientoTypeDrop));
 		movimiento.selectByVisibleText(Helpers.EvaluacionPageHelpers.MOVIMIENTO_VALUE);
 		Select proyecto = new Select(driver.findElement(proyectoTypeDrop));
 		proyecto.selectByVisibleText(Helpers.EvaluacionPageHelpers.PROYECTO_VALUE);
 	}
-	
+
 	private void setEvaluacion() {
 		Select tipoPlazo = new Select(driver.findElement(tipoPlazoTypeDrop));
 		tipoPlazo.selectByVisibleText(Helpers.EvaluacionPageHelpers.TIPO_PLAZO_VALUE);
 		Select formaPago = new Select(driver.findElement(formaPagoTypeDrop));
 		formaPago.selectByVisibleText(Helpers.EvaluacionPageHelpers.FORMA_PAGO_VALUE);
 	}
-	
+
 	private void setDatosPersonales() {
 		driver.findElement(lastNameField).sendKeys(Helpers.EvaluacionPageHelpers.LASTNAME_VALUE);
 		driver.findElement(secondLastNameField).clear();
@@ -160,14 +169,14 @@ public class PageEvaluacion {
 		driver.findElement(fecNacField).sendKeys(Helpers.EvaluacionPageHelpers.FEC_NAC_VALUE);
 		driver.findElement(rfcButton).click();
 		Helpers.threadSleep(Helpers.tinySeconds);
-		driver.findElement(fillDomicilioButton).click();	
+		driver.findElement(fillDomicilioButton).click();
 		Helpers.threadSleep(Helpers.defaultSeconds);
 	}
-	
+
 	private void setDomicilio() {
 		driver.findElement(contactoField).sendKeys(Helpers.EvaluacionPageHelpers.CONTACTO_VALUE);
 	}
-	
+
 	private void setInformacionCrediticia() {
 		Select tarjeta = new Select(driver.findElement(tarjetaTypeDrop));
 		tarjeta.selectByVisibleText(Helpers.EvaluacionPageHelpers.TARJETA_VALUE);
@@ -176,7 +185,7 @@ public class PageEvaluacion {
 		Select creditoBanco = new Select(driver.findElement(creditoBancarioTypeDrop));
 		creditoBanco.selectByVisibleText(Helpers.EvaluacionPageHelpers.CREDITO_BANCO);
 	}
-	
+
 	private void preAutroizaEvaluacion() {
 		driver.findElement(authButtonOne).click();
 		driver.findElement(authButtonTwo).click();
@@ -184,7 +193,7 @@ public class PageEvaluacion {
 		driver.findElement(evaluacionButton).click();
 		Helpers.threadSleep(Helpers.tinySeconds);
 	}
-	
+
 	private String autorizaEvaluacion() {
 		driver.findElement(firmaFisicaButton).click();
 		Helpers.threadSleep(Helpers.tinySeconds);
@@ -194,13 +203,14 @@ public class PageEvaluacion {
 		Helpers.threadSleep(Helpers.mediumSeconds);
 		driver.findElement(confirmEvalButton).click();
 		Helpers.threadSleep(Helpers.longSeconds);
-		Pattern pattern = Pattern.compile(new Helpers().new EvaluacionPageHelpers().getInvoicePattern(), Pattern.MULTILINE);
-		Matcher matcher = pattern.matcher(driver.findElement(folioSIEVResult).getText());		
+		Pattern pattern = Pattern.compile(new Helpers().new EvaluacionPageHelpers().getInvoicePattern(),
+				Pattern.MULTILINE);
+		Matcher matcher = pattern.matcher(driver.findElement(folioSIEVResult).getText());
 		Assert.assertTrue(matcher.matches());
 		return driver.findElement(folioSIEVResult).getText();
 	}
-	
-	private void capturarTicketsAdeudo(){
+
+	private void capturarTicketsAdeudo() {
 		driver.findElement(capturaTicketsButton).click();
 		Helpers.threadSleep(Helpers.defaultSeconds);
 		driver.findElement(noValidarButton).click();
@@ -210,9 +220,9 @@ public class PageEvaluacion {
 		Helpers.threadSleep(Helpers.tinySeconds);
 		autorizaEvaluacion();
 		driver.findElement(aceptaEvaluacionButton).click();
-		Helpers.threadSleep(Helpers.defaultSeconds);		
+		Helpers.threadSleep(Helpers.defaultSeconds);
 	}
-	
+
 	private void capturaDatosPersonales() {
 		Select lugarNacimiento = new Select(driver.findElement(lugarNacimientoTypeDrop));
 		lugarNacimiento.selectByVisibleText(Helpers.EvaluacionPageHelpers.LUGAR_NACIMIENTO_VALUE);
@@ -231,22 +241,25 @@ public class PageEvaluacion {
 		driver.findElement(empresaField).sendKeys(Helpers.EvaluacionPageHelpers.EMPRESA_VALUE);
 		driver.findElement(telefonoTrabajoField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
 	}
-	
+
 	public void capturaDatosReferencia() {
 		driver.findElement(nombreRefField).sendKeys(Helpers.EvaluacionPageHelpers.NOMBRE_REF_VALUE);
 		driver.findElement(apellidosRefField).sendKeys(Helpers.EvaluacionPageHelpers.APELLIDOS_REF_VALUE);
 		driver.findElement(telefonoRefField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
 		driver.findElement(telOficinaRefField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
 	}
-	
+
 	public void assertEmptyFields() {
 		assertEstructuraFolioSIEV();
 		capturarTicketsAdeudo();
 		Helpers.threadSleep(Helpers.longSeconds);
-		Assert.assertTrue(new Select(driver.findElement(lugarNacimientoTypeDrop)).getFirstSelectedOption().getText().contains(Helpers.EvaluacionPageHelpers.DEFAULT_SELECTION_DROP));
-		Assert.assertTrue(new Select(driver.findElement(sexoTypeDrop)).getFirstSelectedOption().getText().contains(Helpers.EvaluacionPageHelpers.DEFAULT_SELECTION_DROP));
-		Assert.assertTrue(driver.findElement(curpField).getText().isEmpty());		
-		Assert.assertTrue(new Select(driver.findElement(tipoIdentTypeDrop)).getFirstSelectedOption().getText().contains(Helpers.EvaluacionPageHelpers.DEFAULT_SELECTION_DROP));
+		Assert.assertTrue(new Select(driver.findElement(lugarNacimientoTypeDrop)).getFirstSelectedOption().getText()
+				.contains(Helpers.EvaluacionPageHelpers.DEFAULT_SELECTION_DROP));
+		Assert.assertTrue(new Select(driver.findElement(sexoTypeDrop)).getFirstSelectedOption().getText()
+				.contains(Helpers.EvaluacionPageHelpers.DEFAULT_SELECTION_DROP));
+		Assert.assertTrue(driver.findElement(curpField).getText().isEmpty());
+		Assert.assertTrue(new Select(driver.findElement(tipoIdentTypeDrop)).getFirstSelectedOption().getText()
+				.contains(Helpers.EvaluacionPageHelpers.DEFAULT_SELECTION_DROP));
 		Assert.assertTrue(driver.findElement(folioIdentField).getText().isEmpty());
 		Assert.assertTrue(driver.findElement(mailField).getText().isEmpty());
 		Assert.assertTrue(driver.findElement(mailConfirmField).getText().isEmpty());
@@ -273,51 +286,57 @@ public class PageEvaluacion {
 		Assert.assertTrue(checkUIStateError(telefonoTrabajoField));
 		Assert.assertTrue(checkUIStateError(empresaField));
 	}
-	
+
 	public void assertValidMail() {
 		assertEstructuraFolioSIEV();
 		capturarTicketsAdeudo();
 		Helpers.threadSleep(Helpers.longSeconds);
 		Pattern pattern = Pattern.compile(Helpers.EvaluacionPageHelpers.VALID_MAIL_REGEX);
 		driver.findElement(mailField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_MAIL_VALUE);
-		Matcher matcher = pattern.matcher(driver.findElement(mailField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		Matcher matcher = pattern
+				.matcher(driver.findElement(mailField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
 		Assert.assertTrue(matcher.matches());
 		driver.findElement(mailField).clear();
 		driver.findElement(mailField).sendKeys(Helpers.EvaluacionPageHelpers.INVALID_MAIL_VALUE);
-		matcher = pattern.matcher(driver.findElement(mailField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		matcher = pattern
+				.matcher(driver.findElement(mailField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
 		Assert.assertFalse(matcher.matches());
 	}
-	
+
 	public void assertValidPhoneNumber() {
 		assertEstructuraFolioSIEV();
 		capturarTicketsAdeudo();
 		Helpers.threadSleep(Helpers.longSeconds);
-		Pattern pattern = Pattern.compile(Helpers.EvaluacionPageHelpers.VALID_PHONE_REGEX,Pattern.MULTILINE);
+		Pattern pattern = Pattern.compile(Helpers.EvaluacionPageHelpers.VALID_PHONE_REGEX, Pattern.MULTILINE);
 		driver.findElement(telefonoField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
-		Matcher matcher = pattern.matcher(driver.findElement(telefonoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		Matcher matcher = pattern
+				.matcher(driver.findElement(telefonoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
 		Assert.assertTrue(matcher.matches());
 		driver.findElement(telefonoField).clear();
 		driver.findElement(telefonoField).sendKeys(Helpers.EvaluacionPageHelpers.INVALID_PHONE_VALUE);
 		Helpers.threadSleepMillis(Helpers.defaultMillis);
-		matcher = pattern.matcher(driver.findElement(telefonoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		matcher = pattern
+				.matcher(driver.findElement(telefonoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
 		Assert.assertFalse(matcher.matches());
 	}
-	
+
 	public void assertValidWorkPhoneNumber() {
 		assertEstructuraFolioSIEV();
 		capturarTicketsAdeudo();
 		Helpers.threadSleep(Helpers.longSeconds);
-		Pattern pattern = Pattern.compile(Helpers.EvaluacionPageHelpers.VALID_PHONE_REGEX,Pattern.MULTILINE);
+		Pattern pattern = Pattern.compile(Helpers.EvaluacionPageHelpers.VALID_PHONE_REGEX, Pattern.MULTILINE);
 		driver.findElement(telefonoTrabajoField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
-		Matcher matcher = pattern.matcher(driver.findElement(telefonoTrabajoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		Matcher matcher = pattern.matcher(
+				driver.findElement(telefonoTrabajoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
 		Assert.assertTrue(matcher.matches());
 		driver.findElement(telefonoTrabajoField).clear();
 		driver.findElement(telefonoTrabajoField).sendKeys(Helpers.EvaluacionPageHelpers.INVALID_PHONE_VALUE);
 		Helpers.threadSleep(Helpers.tinySeconds);
-		matcher = pattern.matcher(driver.findElement(telefonoTrabajoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		matcher = pattern.matcher(
+				driver.findElement(telefonoTrabajoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
 		Assert.assertFalse(matcher.matches());
 	}
-	
+
 	public void assertValidReferencesPhoneNumber() {
 		assertEstructuraFolioSIEV();
 		capturarTicketsAdeudo();
@@ -325,17 +344,19 @@ public class PageEvaluacion {
 		capturaDatosPersonales();
 		driver.findElement(agregarReferenciaButton).click();
 		Helpers.threadSleep(Helpers.tinySeconds);
-		Pattern pattern = Pattern.compile(Helpers.EvaluacionPageHelpers.VALID_PHONE_REGEX,Pattern.MULTILINE);
+		Pattern pattern = Pattern.compile(Helpers.EvaluacionPageHelpers.VALID_PHONE_REGEX, Pattern.MULTILINE);
 		driver.findElement(telefonoRefField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
-		Matcher matcher = pattern.matcher(driver.findElement(telefonoRefField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		Matcher matcher = pattern.matcher(
+				driver.findElement(telefonoRefField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
 		Assert.assertTrue(matcher.matches());
 		driver.findElement(telefonoRefField).clear();
 		driver.findElement(telefonoRefField).sendKeys(Helpers.EvaluacionPageHelpers.INVALID_PHONE_VALUE);
 		Helpers.threadSleep(Helpers.tinySeconds);
-		matcher = pattern.matcher(driver.findElement(telefonoRefField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		matcher = pattern.matcher(
+				driver.findElement(telefonoRefField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
 		Assert.assertFalse(matcher.matches());
 	}
-	
+
 	public void assertAddReferences() {
 		assertEstructuraFolioSIEV();
 		capturarTicketsAdeudo();
@@ -350,18 +371,15 @@ public class PageEvaluacion {
 		Assert.assertTrue(driver.findElement(apellidosRefAdded).getText().contains(Helpers.EvaluacionPageHelpers.APELLIDOS_REF_VALUE));
 		Assert.assertTrue(driver.findElement(telefonoRefAdded).getText().contains(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE));
 	}
-	
+
 	public void assertGenerarFolioSISACT() {
-		assertEstructuraFolioSIEV();
-		capturarTicketsAdeudo();
 		assertAddReferences();
 		driver.findElement(generarSISACTButton).click();
-		//Assert.assertTrue(condition);
+		Helpers.threadSleep(Helpers.longSeconds);
+		// Assert.assertTrue(condition);
 	}
-	
+
 	public void assertClearScreen() {
-		assertEstructuraFolioSIEV();
-		capturarTicketsAdeudo();
 		assertAddReferences();
 		resetForm();
 		Assert.assertTrue(compareSelectedOption(regionTypeDrop));
@@ -378,16 +396,71 @@ public class PageEvaluacion {
 		Assert.assertTrue(driver.findElements(formDireccion).isEmpty());
 	}
 	
+	public void assertBuroCredito() {
+		assertEstructuraFolioSIEV();
+		Helpers.threadSleep(Helpers.longSeconds);
+		Assert.assertTrue(driver.findElement(resultEvaluacion).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).contains(Helpers.EvaluacionPageHelpers.EXITO_VALUE));
+		Assert.assertTrue(driver.findElement(resultBuro).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).contains(Helpers.EvaluacionPageHelpers.RESULTADO_BURO_VALUE));
+	}
+	
+	public void assertDenyBuroCredito() {
+		setMovimiento();
+		setTipoMovimiento();
+		setEvaluacion();
+		setDatosPersonales();
+		setDomicilio();
+		driver.findElement(authBuroButton).click();
+		setInformacionCrediticia();
+		preAutroizaEvaluacion();
+		driver.findElement(confirmaEvalSinBC).click();
+		Helpers.threadSleep(Helpers.longSeconds);
+		Assert.assertTrue(driver.findElement(resultEvaluacion).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).contains(Helpers.EvaluacionPageHelpers.EXITO_VALUE));
+		Assert.assertTrue(driver.findElement(resultBuro).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).contains(Helpers.EvaluacionPageHelpers.RESULTADO_BURO_VALUE));
+	}
+	
+	public void assertProyectoCanalVenta() {
+		Select region = new Select(driver.findElement(regionTypeDrop));
+		region.selectByVisibleText(Helpers.EvaluacionPageHelpers.REGION_VALUE);
+		Helpers.threadSleep(2);
+		Select canal = new Select(driver.findElement(canalTypeDrop));
+		canal.selectByVisibleText(Helpers.EvaluacionPageHelpers.CANAL_VENTAS_TEL_VALUE);
+		Helpers.threadSleep(Helpers.tinySeconds);
+		Select fuerzaVenta = new Select(driver.findElement(fuerzaVTypeDrop));
+		fuerzaVenta.selectByVisibleText(Helpers.EvaluacionPageHelpers.FUERZA_VENTA_VENTAS_VALUE);
+		setTipoMovimiento();
+		setEvaluacion();
+		setDatosPersonales();
+		setDomicilio();
+		Assert.assertTrue(driver.findElements(authBuroButton).isEmpty());
+		setInformacionCrediticia();
+		preAutroizaEvaluacion();
+		driver.findElement(confirmaEvalSinBC).click();
+		Helpers.threadSleep(Helpers.longSeconds);
+		Assert.assertTrue(driver.findElement(resultEvaluacion).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).contains(Helpers.EvaluacionPageHelpers.EXITO_VALUE));
+		Assert.assertTrue(driver.findElement(resultBuro).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).contains(Helpers.EvaluacionPageHelpers.RESULTADO_BURO_VALUE));
+	}
+	
+	public void assertPreventDoubleClick() {
+		setMovimiento();
+		setTipoMovimiento();
+		setEvaluacion();
+		setDatosPersonales();
+		Actions actions = new Actions(driver);
+		actions.doubleClick(driver.findElement(rfcButton)).perform();
+		Assert.assertTrue(driver.findElement(rfcButton).getAttribute(Helpers.EvaluacionPageHelpers.CLASS_ATTRIBUTE).contains(Helpers.EvaluacionPageHelpers.DISABLED_STATE));
+		
+	}
+
 	private boolean isFieldEmpty(By byField) {
 		return driver.findElement(byField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty();
 	}
-	
+
 	private boolean compareSelectedOption(By bySelect) {
 		return new Select(driver.findElement(bySelect)).getFirstSelectedOption().getText().contains(Helpers.EvaluacionPageHelpers.SELECTION_DROP_CUST);
-		
 	}
+
 	private boolean checkUIStateError(By byCondition) {
 		return driver.findElement(byCondition).getAttribute(Helpers.EvaluacionPageHelpers.CLASS_ATTRIBUTE).contains(Helpers.EvaluacionPageHelpers.ERROR_STATE);
 	}
-	
+
 }

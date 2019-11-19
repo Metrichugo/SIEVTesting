@@ -44,7 +44,9 @@ public class Helpers {
 		/*Movimiento*/
 		public static final String REGION_VALUE = "R08";
 		public static final String CANAL_VALUE = "CACS";
+		public static final String CANAL_VENTAS_TEL_VALUE = "CENTRO DE VENTAS TEL";
 		public static final String FUERZA_VENTA_VALUE = "CAC CAD  TAPACHULA I PZA CRISTAL - RACD115";
+		public static final String FUERZA_VENTA_VENTAS_VALUE = "CAC CAMPECHE II GALERIAS - RACDB6F";
 		/*Tipo Movimiento*/
 		public static final String MOVIMIENTO_VALUE = "ACTIVACION";
 		public static final String PROYECTO_VALUE = "CLIENTE NACIONAL";
@@ -84,10 +86,13 @@ public class Helpers {
 		public static final int INVOICE_BEGIN_INDEX = 8; 
 		public static final String CLASS_ATTRIBUTE = "class";
 		public static final String ERROR_STATE ="ui-state-error";
+		public static final String DISABLED_STATE = "ui-state-disabled";
 		public static final String VALID_MAIL_VALUE = "user.mail@mail.telcel.com";
 		public static final String INVALID_MAIL_VALUE ="user_mail.mail.telcel.com";
 		public static final String VALID_PHONE_VALUE = "5512345678";
 		public static final String INVALID_PHONE_VALUE = "55123456";
+		public static final String EXITO_VALUE = "Éxito";
+		public static final String RESULTADO_BURO_VALUE = "NA";
 		
 		/* Regex Patterns*/
 		public static final String VALID_MAIL_REGEX = "^[a-zA-Z0-9_!#$%&’*+\\=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
