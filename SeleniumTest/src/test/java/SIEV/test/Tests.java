@@ -132,6 +132,50 @@ public class Tests {
 		pageEvaluacion.assertValidWorkPhoneNumber();
 	}*/
 	
+	// TCS-34
+	@Test
+	public void assertValidReferencePhoneNumber() {
+		PageLogin pageLogin = new PageLogin(driver);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
+		pageEvaluacion.assertValidReferencesPhoneNumber();
+	}
+	
+	// TCS-35
+	/*@Test
+	public void assertAltaReferencias() {
+		PageLogin pageLogin = new PageLogin(driver);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
+		pageEvaluacion.assertAddReferences();
+	}*/
+	
+	// TCS-36
+	/*@Test
+	public void assertFolioSISACT() {
+		PageLogin pageLogin = new PageLogin(driver);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
+		pageEvaluacion.assertGenerarFolioSISACT();
+	}*/
+	
+	// TCS-37
+	/*@Test
+	public void assertClearScreen() {
+		PageLogin pageLogin =  new PageLogin(driver);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
+		pageEvaluacion.assertClearScreen();
+	}*/
+	
 	@AfterMethod
 	public void endTest() {
 		driver.close();

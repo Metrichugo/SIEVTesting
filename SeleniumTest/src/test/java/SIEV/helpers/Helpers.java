@@ -66,9 +66,20 @@ public class Helpers {
 		/*Información Personal*/
 		public static final String LUGAR_NACIMIENTO_VALUE = "CAMPECHE";
 		public static final String SEXO_VALUE = "Mujer";
+		public static final String CURP_VALUE = "MODF851220MCCRMB02";
+		public static final String TIPO_IDENT_VALUE = "Credencial de elector";
+		public static final String FOLIO_IDENT_VALUE = "AKSDHEBC128374JD";
+		public static final String ENTRE_CALLEA_VALUE = "PRINCIPAL";
+		public static final String ENTRE_CALLEB_VALUE = "SECUNDARIA";
+		public static final String OCUPACION_VALUE = "EMPLEADA";
+		public static final String EMPRESA_VALUE = "TELCEL";
+		/*Referencias*/
+		public static final String NOMBRE_REF_VALUE = "MARTIN";
+		public static final String APELLIDOS_REF_VALUE = "GONZALES ALDANA";
 		
 		public static final String VALUE_ATTRIBUTE = "value";
 		public static final String DEFAULT_SELECTION_DROP = "-Seleccion";
+		public static final String SELECTION_DROP_CUST = "Selecci";
 		public static final String DEFAULT_REASON = "Justificacion";
 		public static final int INVOICE_BEGIN_INDEX = 8; 
 		public static final String CLASS_ATTRIBUTE = "class";

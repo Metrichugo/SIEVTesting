@@ -6,8 +6,8 @@
       <class name="SIEV.test.Tests">
         <methods>
           <include name="endTest"/>
+          <include name="assertValidReferencePhoneNumber"/>
           <include name="init"/>
-          <include name="assertValidMail"/>
         </methods>
       </class> <!-- SIEV.test.Tests -->
     </classes>
