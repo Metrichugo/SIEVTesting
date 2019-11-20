@@ -212,9 +212,9 @@ public class PageEvaluacion {
 
 	private void capturarTicketsAdeudo() {
 		driver.findElement(capturaTicketsButton).click();
-		Helpers.threadSleep(Helpers.defaultSeconds);
+		Helpers.threadSleep(Helpers.tinySeconds);
 		driver.findElement(noValidarButton).click();
-		Helpers.threadSleep(Helpers.defaultSeconds);
+		Helpers.threadSleep(Helpers.tinySeconds);
 		driver.findElement(razonAdeudo).sendKeys(Helpers.EvaluacionPageHelpers.DEFAULT_REASON);
 		driver.findElement(nuevaValidacion).click();
 		Helpers.threadSleep(Helpers.tinySeconds);
@@ -367,6 +367,11 @@ public class PageEvaluacion {
 		capturaDatosReferencia();
 		driver.findElement(addRefButton).click();
 		Helpers.threadSleep(Helpers.tinySeconds);
+		driver.findElement(agregarReferenciaButton).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
+		capturaDatosReferencia();
+		driver.findElement(addRefButton).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
 		Assert.assertTrue(driver.findElement(nombreRefAdded).getText().contains(Helpers.EvaluacionPageHelpers.NOMBRE_REF_VALUE));
 		Assert.assertTrue(driver.findElement(apellidosRefAdded).getText().contains(Helpers.EvaluacionPageHelpers.APELLIDOS_REF_VALUE));
 		Assert.assertTrue(driver.findElement(telefonoRefAdded).getText().contains(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE));
@@ -441,14 +446,48 @@ public class PageEvaluacion {
 	}
 	
 	public void assertPreventDoubleClick() {
+		Actions actions = new Actions(driver);
 		setMovimiento();
 		setTipoMovimiento();
 		setEvaluacion();
-		setDatosPersonales();
-		Actions actions = new Actions(driver);
+		driver.findElement(lastNameField).sendKeys(Helpers.EvaluacionPageHelpers.LASTNAME_VALUE);
+		driver.findElement(secondLastNameField).clear();
+		driver.findElement(secondLastNameField).sendKeys(Helpers.EvaluacionPageHelpers.SECOND_LASTNAME_VALUE);
+		driver.findElement(firstNameField).sendKeys(Helpers.EvaluacionPageHelpers.FIRST_NAME_VALUE);
+		driver.findElement(secondNameField).sendKeys(Helpers.EvaluacionPageHelpers.SECOND_NAME_VALUE);
+		driver.findElement(fecNacField).sendKeys(Helpers.EvaluacionPageHelpers.FEC_NAC_VALUE);
 		actions.doubleClick(driver.findElement(rfcButton)).perform();
 		Assert.assertTrue(driver.findElement(rfcButton).getAttribute(Helpers.EvaluacionPageHelpers.CLASS_ATTRIBUTE).contains(Helpers.EvaluacionPageHelpers.DISABLED_STATE));
-		
+		Helpers.threadSleep(Helpers.tinySeconds);
+		driver.findElement(fillDomicilioButton).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
+		setDomicilio();
+		setInformacionCrediticia();
+		preAutroizaEvaluacion();
+		driver.findElement(firmaFisicaButton).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
+		driver.findElement(confirmPreEvalButton).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
+		driver.findElement(documentLink).click();
+		Helpers.threadSleep(Helpers.mediumSeconds);
+		actions.doubleClick(driver.findElement(confirmEvalButton)).perform();
+		Assert.assertTrue(driver.findElement(confirmEvalButton).getAttribute(Helpers.EvaluacionPageHelpers.CLASS_ATTRIBUTE).contains(Helpers.EvaluacionPageHelpers.DISABLED_STATE));		
+		Helpers.threadSleep(Helpers.longSeconds);
+		capturarTicketsAdeudo();
+		Helpers.threadSleep(Helpers.longSeconds);
+		capturaDatosPersonales();
+		driver.findElement(agregarReferenciaButton).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
+		capturaDatosReferencia();
+		driver.findElement(addRefButton).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
+		actions.doubleClick(driver.findElement(generarSISACTButton)).perform();
+		Assert.assertTrue(driver.findElement(generarSISACTButton).getAttribute(Helpers.EvaluacionPageHelpers.CLASS_ATTRIBUTE).contains(Helpers.EvaluacionPageHelpers.DISABLED_STATE));
+		// TODO: Falta el botón de nueva evaluación y el del CURP porque el servicio no es funcional
+	}
+	
+	public void assertOnlyNumericFields() {
+		//TODO: Validar unicamente que los campos númericos no acepten caracteres alfanuméricos
 	}
 
 	private boolean isFieldEmpty(By byField) {

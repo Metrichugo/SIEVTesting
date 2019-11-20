@@ -141,10 +141,10 @@ public class Tests {
 		pageHome.openEvaluationMenu();
 		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
 		pageEvaluacion.assertValidReferencesPhoneNumber();
-	}
+	}*/
 	
 	// TCS-35
-	@Test
+	/*@Test
 	public void assertAltaReferencias() {
 		PageLogin pageLogin = new PageLogin(driver);
 		pageLogin.Login();
@@ -155,7 +155,7 @@ public class Tests {
 	}*/
 	
 	// TCS-36
-	/*@Test
+	@Test
 	public void assertFolioSISACT() {
 		PageLogin pageLogin = new PageLogin(driver);
 		pageLogin.Login();
@@ -163,7 +163,7 @@ public class Tests {
 		pageHome.openEvaluationMenu();
 		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
 		pageEvaluacion.assertGenerarFolioSISACT();
-	}*/
+	}
 	
 	// TCS-37
 	/*@Test
@@ -210,7 +210,7 @@ public class Tests {
 	}*/
 	
 	// TCS-61
-	@Test
+	/*@Test
 	public void assertPreventDoubleClick() {
 		PageLogin pageLogin = new PageLogin(driver);
 		pageLogin.Login();
@@ -218,7 +218,7 @@ public class Tests {
 		pageHome.openEvaluationMenu();
 		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver);
 		pageEvaluacion.assertPreventDoubleClick();
-	}
+	}*/
 	
 	@AfterMethod
 	public void endTest() {
