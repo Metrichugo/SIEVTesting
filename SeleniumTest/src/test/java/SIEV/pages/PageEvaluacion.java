@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import SIEV.helpers.Helpers;
+import SIEV.test.Tests.Environment;
 
 public class PageEvaluacion {
 	private WebDriver driver;
@@ -45,9 +46,9 @@ public class PageEvaluacion {
 	private By agregarReferenciaButton, nombreRefField, apellidosRefField, telefonoRefField, telOficinaRefField,
 			addRefButton, nombreRefAdded, apellidosRefAdded, telefonoRefAdded;
 	/* Others By's*/
-	private By authBuroButton,resultBuro,resultEvaluacion,confirmaEvalSinBC;
+	private By authBuroButton,resultBuro,resultEvaluacion,confirmaEvalSinBC,folioSISACT,noNameRefAdded,noApellidosRefAdded,noTelefonoRefAdded;
 
-	public PageEvaluacion(WebDriver driver) {
+	public PageEvaluacion(WebDriver driver,Environment enviroment) {
 		this.driver = driver;
 		regionTypeDrop = By.id("formSiev:region_input");
 		canalTypeDrop = By.id("formSiev:canalVenta_input");
@@ -113,6 +114,10 @@ public class PageEvaluacion {
 		resultBuro = By.id("formSiev:RESbURO");
 		authBuroButton = By.id("formSiev:j_idt142");
 		confirmaEvalSinBC = By.id("formDlg:btnSiConfirmaSinBc");
+		folioSISACT = By.id("datosClienteForm2:j_idt292");
+		noNameRefAdded = By.id("datosClienteForm2:tblReferencias:2:j_idt280");
+		noApellidosRefAdded = By.id("datosClienteForm2:tblReferencias:2:j_idt282");
+		noTelefonoRefAdded = By.id("datosClienteForm2:tblReferencias:2:j_idt284");
 	}
 
 	public String assertEstructuraFolioSIEV() {
@@ -380,8 +385,12 @@ public class PageEvaluacion {
 	public void assertGenerarFolioSISACT() {
 		assertAddReferences();
 		driver.findElement(generarSISACTButton).click();
-		Helpers.threadSleep(Helpers.longSeconds);
-		// Assert.assertTrue(condition);
+		Helpers.threadSleep(Helpers.mediumSeconds);
+		System.out.println(driver.findElement(folioSISACT).getText());
+		System.out.println(driver.findElement(noNameRefAdded).getText());
+		Assert.assertTrue(driver.findElement(folioSISACT).getText().contains(Helpers.EvaluacionPageHelpers.ERROR_FOLIO_SISACT));
+		Assert.assertTrue(driver.findElement(noNameRefAdded).getText().contains(Helpers.EvaluacionPageHelpers.NO_APLICA_VALUE));
+		Assert.assertTrue(driver.findElement(noApellidosRefAdded).getText().contains(Helpers.EvaluacionPageHelpers.NO_APLICA_VALUE));
 	}
 
 	public void assertClearScreen() {
@@ -483,11 +492,24 @@ public class PageEvaluacion {
 		Helpers.threadSleep(Helpers.tinySeconds);
 		actions.doubleClick(driver.findElement(generarSISACTButton)).perform();
 		Assert.assertTrue(driver.findElement(generarSISACTButton).getAttribute(Helpers.EvaluacionPageHelpers.CLASS_ATTRIBUTE).contains(Helpers.EvaluacionPageHelpers.DISABLED_STATE));
-		// TODO: Falta el botón de nueva evaluación y el del CURP porque el servicio no es funcional
+		// TODO: Falta el botón del CURP porque el servicio no es funcional
 	}
 	
 	public void assertOnlyNumericFields() {
-		//TODO: Validar unicamente que los campos númericos no acepten caracteres alfanuméricos
+		assertEstructuraFolioSIEV();
+		capturarTicketsAdeudo();
+		Helpers.threadSleep(Helpers.longSeconds);
+		Pattern pattern = Pattern.compile(Helpers.EvaluacionPageHelpers.VALID_PHONE_REGEX, Pattern.MULTILINE);
+		driver.findElement(telefonoField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
+		Matcher matcher = pattern
+				.matcher(driver.findElement(telefonoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		Assert.assertTrue(matcher.matches());
+		driver.findElement(telefonoField).clear();
+		driver.findElement(telefonoField).sendKeys(Helpers.EvaluacionPageHelpers.INVALID_PHONE_VALUE);
+		Helpers.threadSleepMillis(Helpers.defaultMillis);
+		matcher = pattern
+				.matcher(driver.findElement(telefonoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
+		Assert.assertFalse(matcher.matches());
 	}
 
 	private boolean isFieldEmpty(By byField) {
