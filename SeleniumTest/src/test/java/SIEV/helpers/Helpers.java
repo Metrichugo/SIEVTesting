@@ -5,7 +5,8 @@ import java.util.Date;
 
 public class Helpers {
 
-	public static final int defaultMillis = 500;
+	public static final int defaultMillis = 1200;
+	public static final int defaultMillis1 = 25000;
 	public static final int defaultSeconds = 1;
 	public static final int tinySeconds = 3;
 	public static final int shortSeconds = 8;
@@ -42,6 +43,7 @@ public class Helpers {
 	
 	public class EvaluacionPageHelpers{
 		/*Movimiento*/
+		public static final String FECHA_NACIMIENTO = "20/12/1985";
 		public static final String REGION_VALUE = "R08";
 		public static final String CANAL_VALUE = "CACS";
 		public static final String CANAL_VENTAS_TEL_VALUE = "CENTRO DE VENTAS TEL";
