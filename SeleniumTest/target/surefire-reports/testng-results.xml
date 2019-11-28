@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="SIEV.test.Tests" duration-ms="11087" started-at="2019-11-25T18:42:46Z" finished-at="2019-11-25T18:42:57Z">
+  <suite name="SIEV.test.Tests" duration-ms="163869" started-at="2019-11-28T18:50:53Z" finished-at="2019-11-28T18:53:36Z">
     <groups>
     </groups>
-    <test name="Command line test" duration-ms="11087" started-at="2019-11-25T18:42:46Z" finished-at="2019-11-25T18:42:57Z">
+    <test name="Command line test" duration-ms="163869" started-at="2019-11-28T18:50:53Z" finished-at="2019-11-28T18:53:36Z">
       <class name="SIEV.test.Tests">
-        <test-method status="PASS" signature="init()[pri:0, instance:SIEV.test.Tests@67b64c45]" name="init" is-config="true" duration-ms="6575" started-at="2019-11-25T18:42:46Z" finished-at="2019-11-25T18:42:53Z">
+        <test-method status="PASS" signature="init()[pri:0, instance:SIEV.test.Tests@67b64c45]" name="init" is-config="true" duration-ms="8612" started-at="2019-11-28T18:50:53Z" finished-at="2019-11-28T18:51:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method status="PASS" signature="LoginFailTest()[pri:0, instance:SIEV.test.Tests@67b64c45]" name="LoginFailTest" duration-ms="4440" started-at="2019-11-25T18:42:53Z" finished-at="2019-11-25T18:42:57Z">
+        <test-method status="PASS" signature="assertPreventDoubleClick()[pri:0, instance:SIEV.test.Tests@67b64c45]" name="assertPreventDoubleClick" duration-ms="155181" started-at="2019-11-28T18:51:01Z" finished-at="2019-11-28T18:53:36Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- LoginFailTest -->
-        <test-method status="PASS" signature="endTest()[pri:0, instance:SIEV.test.Tests@67b64c45]" name="endTest" is-config="true" duration-ms="52" started-at="2019-11-25T18:42:57Z" finished-at="2019-11-25T18:42:57Z">
+        </test-method> <!-- assertPreventDoubleClick -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:SIEV.test.Tests@67b64c45]" name="endTest" is-config="true" duration-ms="57" started-at="2019-11-28T18:53:36Z" finished-at="2019-11-28T18:53:36Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endTest -->

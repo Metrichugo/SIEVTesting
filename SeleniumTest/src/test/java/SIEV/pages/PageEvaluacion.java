@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import SIEV.common.EConstants;
 import SIEV.helpers.Helpers;
 import SIEV.test.Tests.Environment;
 
@@ -63,7 +64,7 @@ public class PageEvaluacion {
 		secondNameField = By.id("formSiev:Snombre");
 		fecNacField = By.id("formSiev:fechaNacimiento_input");
 		rfcField = By.id("formSiev:rfc");
-		rfcButton = By.id("formSiev:j_idt107");
+		rfcButton = By.id(enviroment == Environment.PRODUCTION?EConstants.RFC_BUTTON.getProd():EConstants.RFC_BUTTON.getQA());
 		authButtonOne = By.id("formSiev:blnAuto1");
 		authButtonTwo = By.id("formSiev:blnAuto2");
 		tarjetaTypeDrop = By.id("formSiev:cmbTc_input");
@@ -72,17 +73,17 @@ public class PageEvaluacion {
 		formDireccion = By.id("formSiev:direccion");
 		contactoField = By.id("formSiev:itNumContCli");
 		evaluacionButton = By.id("formSiev:btnEval");
-		fillDomicilioButton = By.id("formDlg:tblClientes:0:j_idt321");
+		fillDomicilioButton = By.id(enviroment == Environment.PRODUCTION?EConstants.FILL_DOMICILIO_BUTTON.getProd():EConstants.FILL_DOMICILIO_BUTTON.getQA());
 		firmaFisicaButton = By.id("formDlg:btnFisica");
 		confirmPreEvalButton = By.id("formDlg:btnSiPreEvalua");
 		documentLink = By.xpath("/html/body/center[2]/form[4]/div[6]/div[2]/a");
 		confirmEvalButton = By.id("formDlg:btnSiEvalua");
-		folioSIEVResult = By.id("formSiev:resultadoForm:j_idt199");
+		folioSIEVResult = By.id(enviroment == Environment.PRODUCTION?EConstants.FOLIO_SIEV_RESULT.getProd():EConstants.FOLIO_SIEV_RESULT.getQA());
 		resetForm = By.id("formSiev:cleanBtn");
 		capturaTicketsButton = By.id("formSiev:resultadoForm:btnTicketsAdeudo");
-		noValidarButton = By.id("ticketsForm:j_idt308");
+		noValidarButton = By.id(enviroment == Environment.PRODUCTION?EConstants.NOVALIDAR_BUTTON.getProd():EConstants.NOVALIDAR_BUTTON.getQA());
 		razonAdeudo = By.id("ticketsForm:txtRAzonAdeudo");
-		nuevaValidacion = By.id("ticketsForm:j_idt313");
+		nuevaValidacion = By.id(enviroment == Environment.PRODUCTION?EConstants.NUEVA_VALIDACION.getProd():EConstants.NUEVA_VALIDACION.getQA());
 		aceptaEvaluacionButton = By.id("formSiev:resultadoForm:aceptaEval");
 		lugarNacimientoTypeDrop = By.id("datosClienteForm2:cmbLugNac_input");
 		lugarNacimientoDiv = By.id("datosClienteForm2:cmbLugNac");
@@ -101,23 +102,23 @@ public class PageEvaluacion {
 		telefonoTrabajoField = By.id("datosClienteForm2:txtDeTelefono");
 		empresaField = By.id("datosClienteForm2:txtEmpresa");
 		generarSISACTButton = By.id("datosClienteForm2:btnGenFolSisact");
-		agregarReferenciaButton = By.id("datosClienteForm2:tblReferencias:j_idt278");
+		agregarReferenciaButton = By.id(enviroment == Environment.PRODUCTION?EConstants.AGREGAR_REFERENCIA_BUTTON.getProd():EConstants.AGREGAR_REFERENCIA_BUTTON.getQA());
 		nombreRefField = By.id("dlgRfrForm:txtNomRfr");
 		apellidosRefField = By.id("dlgRfrForm:txtApeRfr");
 		telefonoRefField = By.id("dlgRfrForm:txtTelDomRfr");
 		telOficinaRefField = By.id("dlgRfrForm:txtTelOfiRfr");
 		addRefButton = By.id("dlgRfrForm:btnAddUpdRfr");
-		nombreRefAdded = By.id("datosClienteForm2:tblReferencias:0:j_idt280");
-		apellidosRefAdded = By.id("datosClienteForm2:tblReferencias:0:j_idt282");
-		telefonoRefAdded = By.id("datosClienteForm2:tblReferencias:0:j_idt284");
+		nombreRefAdded = By.id(enviroment == Environment.PRODUCTION?EConstants.NOMBRE_REF_ADDED.getProd():EConstants.NOMBRE_REF_ADDED.getQA());
+		apellidosRefAdded = By.id(enviroment == Environment.PRODUCTION?EConstants.APELLIDOS_REF_ADDED.getProd():EConstants.APELLIDOS_REF_ADDED.getQA());
+		telefonoRefAdded = By.id(enviroment == Environment.PRODUCTION?EConstants.TELEFONO_REF_ADDED.getProd():EConstants.TELEFONO_REF_ADDED.getQA());
 		resultEvaluacion = By.id("formSiev:REST");
 		resultBuro = By.id("formSiev:RESbURO");
-		authBuroButton = By.id("formSiev:j_idt142");
+		authBuroButton = By.id(enviroment == Environment.PRODUCTION?EConstants.AUTH_BURO_BUTTON.getProd():EConstants.AUTH_BURO_BUTTON.getQA() );
 		confirmaEvalSinBC = By.id("formDlg:btnSiConfirmaSinBc");
-		folioSISACT = By.id("datosClienteForm2:j_idt292");
-		noNameRefAdded = By.id("datosClienteForm2:tblReferencias:2:j_idt280");
-		noApellidosRefAdded = By.id("datosClienteForm2:tblReferencias:2:j_idt282");
-		noTelefonoRefAdded = By.id("datosClienteForm2:tblReferencias:2:j_idt284");
+		folioSISACT = By.id(enviroment == Environment.PRODUCTION?EConstants.FOLIO_SISACT.getProd():EConstants.FOLIO_SISACT.getQA());
+		noNameRefAdded = By.id(enviroment == Environment.PRODUCTION?EConstants.NONAME_REF_ADDED.getProd():EConstants.NONAME_REF_ADDED.getQA());
+		noApellidosRefAdded = By.id(enviroment == Environment.PRODUCTION?EConstants.NOAPELLIDOS_REF_ADDED.getProd():EConstants.NOAPELLIDOS_REF_ADDED.getQA());
+		noTelefonoRefAdded = By.id(enviroment == Environment.PRODUCTION?EConstants.NOTELEFONO_REF_ADDE.getProd():EConstants.NOTELEFONO_REF_ADDE.getQA());
 	}
 
 	public String assertEstructuraFolioSIEV() {
@@ -146,7 +147,7 @@ public class PageEvaluacion {
 		Helpers.threadSleep(2);
 		Select canal = new Select(driver.findElement(canalTypeDrop));
 		canal.selectByVisibleText(Helpers.EvaluacionPageHelpers.CANAL_VALUE);
-		Helpers.threadSleepMillis(900);
+		Helpers.threadSleep(Helpers.tinySeconds);
 		Select fuerzaVenta = new Select(driver.findElement(fuerzaVTypeDrop));
 		fuerzaVenta.selectByVisibleText(Helpers.EvaluacionPageHelpers.FUERZA_VENTA_VALUE);
 	}
@@ -192,6 +193,7 @@ public class PageEvaluacion {
 	}
 
 	private void preAutroizaEvaluacion() {
+		Helpers.threadSleep(Helpers.tinySeconds);
 		driver.findElement(authButtonOne).click();
 		driver.findElement(authButtonTwo).click();
 		Helpers.threadSleep(Helpers.tinySeconds);

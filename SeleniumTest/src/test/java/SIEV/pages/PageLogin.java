@@ -25,12 +25,12 @@ public class PageLogin {
 
 	public PageLogin(@Nonnull WebDriver driver,Environment enviroment) {
 		this.driver = driver;
-		userNameField = By.id(enviroment==Environment.PRODUCTION?EConstants.USER_NAME_FIELD.getProd():EConstants.USER_NAME_FIELD.getQA());
-		userPassField = By.id(enviroment==Environment.PRODUCTION?EConstants.USER_PASSWORD_FIELD.getProd():EConstants.USER_PASSWORD_FIELD.getQA());
-		regionDrop = By.id(enviroment==Environment.PRODUCTION?EConstants.REGION_DROP.getProd():EConstants.REGION_DROP.getQA());
+		userNameField = By.id("loginForm:txtUsr");
+		userPassField = By.id("loginForm:txtPwd");
+		regionDrop = By.id("loginForm:cmbRegion_input");
 		userTypeDrop = By.id(enviroment==Environment.PRODUCTION?EConstants.USER_TYPE.getProd():EConstants.USER_TYPE.getQA());
-		loginButton = By.id(enviroment==Environment.PRODUCTION?EConstants.LOGIN_BUTTON.getProd():EConstants.LOGIN_BUTTON.getQA());
-		invalidLoginAlert = By.xpath(enviroment==Environment.PRODUCTION?EConstants.INVALID_LOGIN_ALERT.getProd():EConstants.INVALID_LOGIN_ALERT.getQA());
+		loginButton = By.id("loginForm:btnLog");
+		invalidLoginAlert = By.xpath("/html/body/center[1]/div/div/ul/li");
 		userLoged = By.id(enviroment==Environment.PRODUCTION?EConstants.USER_LOGED.getProd():EConstants.USER_LOGED.getQA());
 	}
 	
@@ -52,12 +52,16 @@ public class PageLogin {
 		userTypeElement.selectByVisibleText(userType);
 	}
 	
-	public void assertWrongLogin() {
+	public void assertWrongLogin(Environment environment) {
 		Assert.assertTrue(!driver.findElement(userNameField).getAttribute("value").isEmpty());
 		Assert.assertTrue(!driver.findElement(userPassField).getAttribute("value").isEmpty());
 		driver.findElement(loginButton).click();
 		Helpers.threadSleep(3);
-		Assert.assertTrue(driver.findElement(invalidLoginAlert).getText().contains("invalido"));
+		if(environment == Environment.PRODUCTION) {
+			Assert.assertTrue(driver.findElement(invalidLoginAlert).getText().contains("invalido"));	
+		}else {
+			Assert.assertTrue(driver.findElement(invalidLoginAlert).getText().contains("Validation Error"));			
+		}
 	}
 	
 	public void assertLogin() {
