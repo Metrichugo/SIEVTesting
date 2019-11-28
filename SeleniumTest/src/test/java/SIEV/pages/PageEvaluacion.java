@@ -498,20 +498,38 @@ public class PageEvaluacion {
 	}
 	
 	public void assertOnlyNumericFields() {
-		assertEstructuraFolioSIEV();
+		setMovimiento();
+		setTipoMovimiento();
+		setEvaluacion();
+		setDatosPersonales();
+		driver.findElement(contactoField).sendKeys(Helpers.EvaluacionPageHelpers.NO_NUMERIC_VALUE);
+		Assert.assertTrue(driver.findElement(contactoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty());
+		setDomicilio();
+		setInformacionCrediticia();
+		preAutroizaEvaluacion();
+		autorizaEvaluacion();
 		capturarTicketsAdeudo();
 		Helpers.threadSleep(Helpers.longSeconds);
-		Pattern pattern = Pattern.compile(Helpers.EvaluacionPageHelpers.VALID_PHONE_REGEX, Pattern.MULTILINE);
-		driver.findElement(telefonoField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
-		Matcher matcher = pattern
-				.matcher(driver.findElement(telefonoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
-		Assert.assertTrue(matcher.matches());
+		capturaDatosPersonales();
 		driver.findElement(telefonoField).clear();
-		driver.findElement(telefonoField).sendKeys(Helpers.EvaluacionPageHelpers.INVALID_PHONE_VALUE);
-		Helpers.threadSleepMillis(Helpers.defaultMillis);
-		matcher = pattern
-				.matcher(driver.findElement(telefonoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE));
-		Assert.assertFalse(matcher.matches());
+		driver.findElement(telefonoTrabajoField).clear();
+		driver.findElement(telefonoField).sendKeys(Helpers.EvaluacionPageHelpers.NO_NUMERIC_VALUE);
+		Assert.assertTrue(driver.findElement(telefonoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty());
+		driver.findElement(telefonoField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
+		driver.findElement(telefonoTrabajoField).sendKeys(Helpers.EvaluacionPageHelpers.NO_NUMERIC_VALUE);
+		Assert.assertTrue(driver.findElement(telefonoTrabajoField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty());
+		driver.findElement(telefonoTrabajoField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
+		driver.findElement(agregarReferenciaButton).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
+		capturaDatosReferencia();
+		driver.findElement(telefonoRefField).clear();
+		driver.findElement(telOficinaRefField).clear();
+		driver.findElement(telefonoRefField).sendKeys(Helpers.EvaluacionPageHelpers.NO_NUMERIC_VALUE);
+		Assert.assertTrue(driver.findElement(telefonoRefField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty());
+		driver.findElement(telefonoRefField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
+		driver.findElement(telOficinaRefField).sendKeys(Helpers.EvaluacionPageHelpers.NO_NUMERIC_VALUE);
+		Assert.assertTrue(driver.findElement(telOficinaRefField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty());
+		driver.findElement(telOficinaRefField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
 	}
 
 	private boolean isFieldEmpty(By byField) {

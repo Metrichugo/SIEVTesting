@@ -95,6 +95,7 @@ public class Helpers {
 		public static final String RESULTADO_BURO_VALUE = "NA";
 		public static final String NO_APLICA_VALUE = "NO PROPORCIONADO";
 		public static final String ERROR_FOLIO_SISACT = "[-1] ERROR EN LA CONFIGURACION DEL SERVICIO SISACT";
+		public static final String NO_NUMERIC_VALUE = "ABCDEFGHIJ";
 		
 		/* Regex Patterns*/
 		public static final String VALID_MAIL_REGEX = "^[a-zA-Z0-9_!#$%&’*+\\=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
