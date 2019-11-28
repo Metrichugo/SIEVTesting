@@ -530,6 +530,7 @@ public class PageEvaluacion {
 		driver.findElement(telOficinaRefField).sendKeys(Helpers.EvaluacionPageHelpers.NO_NUMERIC_VALUE);
 		Assert.assertTrue(driver.findElement(telOficinaRefField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty());
 		driver.findElement(telOficinaRefField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
+		
 	}
 
 	private boolean isFieldEmpty(By byField) {
