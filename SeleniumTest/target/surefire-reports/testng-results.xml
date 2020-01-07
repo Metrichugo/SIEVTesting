@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="SIEV.test.Tests" duration-ms="157737" started-at="2019-11-28T19:43:35Z" finished-at="2019-11-28T19:46:13Z">
+  <suite name="SIEV.test.Tests" duration-ms="22915" started-at="2020-01-03T23:20:07Z" finished-at="2020-01-03T23:20:30Z">
     <groups>
     </groups>
-    <test name="Command line test" duration-ms="157737" started-at="2019-11-28T19:43:35Z" finished-at="2019-11-28T19:46:13Z">
+    <test name="Command line test" duration-ms="22915" started-at="2020-01-03T23:20:07Z" finished-at="2020-01-03T23:20:30Z">
       <class name="SIEV.test.Tests">
-        <test-method status="PASS" signature="init()[pri:0, instance:SIEV.test.Tests@67b64c45]" name="init" is-config="true" duration-ms="7184" started-at="2019-11-28T19:43:35Z" finished-at="2019-11-28T19:43:43Z">
+        <test-method status="PASS" signature="init()[pri:0, instance:SIEV.test.Tests@67b64c45]" name="init" is-config="true" duration-ms="6649" started-at="2020-01-03T23:20:07Z" finished-at="2020-01-03T23:20:13Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method status="PASS" signature="assertNumericFields()[pri:0, instance:SIEV.test.Tests@67b64c45]" name="assertNumericFields" duration-ms="150479" started-at="2019-11-28T19:43:43Z" finished-at="2019-11-28T19:46:13Z">
+        <test-method status="PASS" signature="assertGeneracionRFC()[pri:0, instance:SIEV.test.Tests@67b64c45]" name="assertGeneracionRFC" duration-ms="16197" started-at="2020-01-03T23:20:13Z" finished-at="2020-01-03T23:20:30Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- assertNumericFields -->
-        <test-method status="PASS" signature="endTest()[pri:0, instance:SIEV.test.Tests@67b64c45]" name="endTest" is-config="true" duration-ms="52" started-at="2019-11-28T19:46:13Z" finished-at="2019-11-28T19:46:13Z">
+        </test-method> <!-- assertGeneracionRFC -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:SIEV.test.Tests@67b64c45]" name="endTest" is-config="true" duration-ms="50" started-at="2020-01-03T23:20:30Z" finished-at="2020-01-03T23:20:30Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endTest -->

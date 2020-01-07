@@ -33,7 +33,7 @@ public class Tests {
 		System.setProperty(Constants.driverKey,Constants.driverValue);
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		environment = Environment.QA;
+		environment = Environment.QA; // Change to the environment you want to use 
 		driver.navigate().to(EConstants.END_POINT.getQA()); //Change to the environment you want to use
 		Helpers.threadSleep(2);
 	}
@@ -225,7 +225,7 @@ public class Tests {
 		pageHome.openEvaluationMenu();
 		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver,environment);
 		pageEvaluacion.assertPreventDoubleClick();
-	}*/
+	}
 	
 	// TCS-58
 	@Test
@@ -236,7 +236,155 @@ public class Tests {
 		pageHome.openEvaluationMenu();
 		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver,environment);
 		pageEvaluacion.assertOnlyNumericFields();
+	}*/
+	
+	
+	/** Integración Pruebas Alberto**/
+	//TODO: TEST IF IT WORKS (VPN STOP WORKING)
+	
+	// TCS-42
+	/*@Test
+	public void assertRespuestaEvaluacion() {
+		PageLogin pageLogin = new PageLogin(driver,environment);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver,environment);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver,environment);
+		pageEvaluacion.assertRespuestaEvaluacion();
+	}*/
+	
+	
+	///// Faltan validar, se necesita VPN
+	
+	// TCS-18
+	/*@Test
+	public void assertDomicilioPersonal() {
+		PageLogin pageLogin = new PageLogin(driver,environment);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver,environment);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver,environment);
+		pageEvaluacion.assertDomicilioPersonal();
+	}*/
+	
+	// TCS-10
+	/*@Test
+	public void assertCerrarSesion() {
+		PageLogin pageLogin = new PageLogin(driver, environment);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver, environment);
+		pageHome.assertLogout();
+	}*/
+	
+	// TCS-11
+	/*@Test
+	public void assertDisplayActivaciones() {
+		PageLogin pageLogin = new PageLogin(driver, environment);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver,environment);
+		pageHome.assertDisplayActivaciones();
+	}*/
+	
+	// TCS-12
+	/*@Test
+	public void assertDisplayConsultas() {
+		PageLogin pageLogin = new PageLogin(driver, environment);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver, environment);
+		pageHome.assertDisplayConsultas();
+	}*/
+	
+	// TCS-19
+	/*@Test
+	public void assertSessionExpired() {
+		PageLogin pageLogin = new PageLogin(driver, environment);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver, environment);
+		pageHome.assertSessionExpired();
+	}*/
+	
+	// TCS-13
+	/*@Test
+	public void assertMandatoryPersonalFields() {
+		PageLogin pageLogin = new PageLogin(driver, environment);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver, environment);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver, environment);
+		pageEvaluacion.assertMandatoryPersonalFields();
+	}*/
+	
+	// TCS-14
+	/*@Test
+	public void assertDateFormat() {
+		PageLogin pageLogin = new PageLogin(driver, environment);
+		pageLogin.Login();
+		PageHome pageHome =  new PageHome(driver, environment);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver, environment);
+		pageEvaluacion.assertDateFormat();
+	}*/
+	
+	// TCS-17
+	/*@Test
+	public void assertGeneracionRFC() {
+		PageLogin pageLogin = new PageLogin(driver, environment);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver, environment);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver, environment);
+		pageEvaluacion.assertGeneracionRFC();
+	}*/
+	
+	
+	// TCS-20
+	@Test
+	public void assertInformacionCrediticia() {
+		PageLogin pageLogin = new PageLogin(driver, environment);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver, environment);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver, environment);
+		pageEvaluacion.assertInformacionCrediticia();
 	}
+	
+	
+	//TCS-56   FUNCIONA CORRECTAMENTE
+	/*@Test
+	public void Test() {
+		PageLogin pageLogin = new PageLogin(driver,environment);
+		pageLogin.Login();
+		PageHome pageHome = new PageHome(driver,environment);
+		pageHome.openEvaluationMenu();
+		PageEvaluacion pageEvaluacion = new PageEvaluacion(driver, environment);
+		
+		PageHome siev1 = new PageHome(driver,environment);
+		PageHome siev2 = new PageHome(driver,environment);
+		PageHome siev3 = new PageHome(driver,environment);
+		siev.validacionDomicilioPer();
+		siev1.PreparaEvaluacion();
+		siev2.SiFirmaFisicaDoc();
+		siev3.ClickBotonCapturarTicket();
+	}*/
+	
+	
+	
+	// TCS-157
+	/*@Test
+	public void Test() {
+			PageLogin pageLogin = new PageLogin(driver,environment);
+			pageLogin.Login();
+			PageHome pageHome = new PageHome(driver,environment);
+			pageHome.openEvaluationMenu();
+			PageEvaluacion pageEvaluacion = new PageEvaluacion(driver,environment);
+			pageEvaluacion.assertDomicilioPersonal();
+			/*PageHome siev1 = new PageHome(driver,environment);
+			PageHome siev2 = new PageHome(driver,environment);
+			siev.validacionDomicilioPer();
+			siev1.PreparaEvaluacion();
+			siev2.EliminarPdfGenerado();			
+	}*/
+	
 	
 	@AfterMethod
 	public void endTest() {

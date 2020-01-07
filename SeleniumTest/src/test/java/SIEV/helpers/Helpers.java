@@ -11,6 +11,7 @@ public class Helpers {
 	public static final int shortSeconds = 8;
 	public static final int mediumSeconds = 10;
 	public static final int longSeconds = 25;
+	public static final int sessionTime = 301;
 	
 	public static void threadSleep(int seconds) {
 		try {
@@ -32,7 +33,7 @@ public class Helpers {
 	public class LoginPageHelpers {
 		public static final String USER_VALUE = "64625";
 		public static final String WRONG_USER_VALUE = "user";
-		public static final String PASS_VALUE = "gold8686";
+		public static final String PASS_VALUE = "gold8787";
 		public static final String WRONG_PASS_VALUE = "password";
 		public static final String REGION_VALUE = "Region 9";
 		public static final String USER_TYPE_VALUE = "EMPLEADOS DEUR";
@@ -42,11 +43,18 @@ public class Helpers {
 	
 	public class EvaluacionPageHelpers{
 		/*Movimiento*/
-		public static final String REGION_VALUE = "R08";
+		/*public static final String REGION_VALUE = "R08";
 		public static final String CANAL_VALUE = "CACS";
 		public static final String CANAL_VENTAS_TEL_VALUE = "CENTRO DE VENTAS TEL";
 		public static final String FUERZA_VENTA_VALUE = "CAC CAD  TAPACHULA I PZA CRISTAL - RACD115";
+		public static final String FUERZA_VENTA_VENTAS_VALUE = "CAC CAMPECHE II GALERIAS - RACDB6F";*/
+		
+		public static final String REGION_VALUE = "R09";
+		public static final String CANAL_VALUE = "CACS";
+		public static final String CANAL_VENTAS_TEL_VALUE = "CENTRO DE VENTAS TEL";
+		public static final String FUERZA_VENTA_VALUE = "CAC ETRAM AZTECA - AZTEC";
 		public static final String FUERZA_VENTA_VENTAS_VALUE = "CAC CAMPECHE II GALERIAS - RACDB6F";
+		
 		/*Tipo Movimiento*/
 		public static final String MOVIMIENTO_VALUE = "ACTIVACION";
 		public static final String PROYECTO_VALUE = "CLIENTE NACIONAL";
@@ -59,6 +67,7 @@ public class Helpers {
 		public static final String FIRST_NAME_VALUE = "FABIANA";
 		public static final String SECOND_NAME_VALUE = "";
 		public static final String FEC_NAC_VALUE = "20/12/1985";
+		public static final String INVALID_FEC_NAC_VALUE = "1985/20/12";
 		/*Domicilio Personal*/
 		public static final String CONTACTO_VALUE = "5512345678";
 		/*Información Crediticia*/

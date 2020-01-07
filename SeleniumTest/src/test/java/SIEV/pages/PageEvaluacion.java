@@ -12,6 +12,7 @@ import org.testng.Assert;
 
 import SIEV.common.EConstants;
 import SIEV.helpers.Helpers;
+import SIEV.helpers.Helpers.EvaluacionPageHelpers;
 import SIEV.test.Tests.Environment;
 
 public class PageEvaluacion {
@@ -24,9 +25,9 @@ public class PageEvaluacion {
 	private By tipoPlazoTypeDrop, formaPagoTypeDrop;
 	/* By's for Datos Personales */
 	private By lastNameField, secondLastNameField, firstNameField, secondNameField, fecNacField, rfcButton, rfcField,
-			fillDomicilioButton;
+			closeDomicilioAlert,fillDomicilioButton,rfcFailureDiv;
 	/* By's for Domicilio */
-	private By contactoField, formDireccion;
+	private By calleField,numExteriorField,coloniaField,ciudadField,delegacionField,zipField,estadoTypeDrop,contactoField, formDireccion;
 	/* By's for Informacion Crediticia */
 	private By tarjetaTypeDrop, creditoAutoTypeDrop, creditoBancarioTypeDrop;
 	/* By's for Autorizacion Evaluación */
@@ -47,9 +48,9 @@ public class PageEvaluacion {
 	private By agregarReferenciaButton, nombreRefField, apellidosRefField, telefonoRefField, telOficinaRefField,
 			addRefButton, nombreRefAdded, apellidosRefAdded, telefonoRefAdded;
 	/* Others By's*/
-	private By authBuroButton,resultBuro,resultEvaluacion,confirmaEvalSinBC,folioSISACT,noNameRefAdded,noApellidosRefAdded,noTelefonoRefAdded;
+	private By authBuroButton,resultBuro,resultEvaluacion,confirmaEvalSinBC,folioSISACT,noNameRefAdded,noApellidosRefAdded,noTelefonoRefAdded,respuestaEvaluacionDiv;
 
-	public PageEvaluacion(WebDriver driver,Environment enviroment) {
+	public PageEvaluacion(WebDriver driver,Environment environment) {
 		this.driver = driver;
 		regionTypeDrop = By.id("formSiev:region_input");
 		canalTypeDrop = By.id("formSiev:canalVenta_input");
@@ -64,26 +65,35 @@ public class PageEvaluacion {
 		secondNameField = By.id("formSiev:Snombre");
 		fecNacField = By.id("formSiev:fechaNacimiento_input");
 		rfcField = By.id("formSiev:rfc");
-		rfcButton = By.id(enviroment == Environment.PRODUCTION?EConstants.RFC_BUTTON.getProd():EConstants.RFC_BUTTON.getQA());
+		rfcButton = By.id(environment == Environment.PRODUCTION?EConstants.RFC_BUTTON.getProd():EConstants.RFC_BUTTON.getQA());
 		authButtonOne = By.id("formSiev:blnAuto1");
 		authButtonTwo = By.id("formSiev:blnAuto2");
 		tarjetaTypeDrop = By.id("formSiev:cmbTc_input");
 		creditoAutoTypeDrop = By.id("formSiev:creditoAutomotriz_input");
 		creditoBancarioTypeDrop = By.id("formSiev:creditoBancario_input");
 		formDireccion = By.id("formSiev:direccion");
+		calleField = By.id("formSiev:calle");
+		numExteriorField =By.id("formSiev:numExterior");
+		coloniaField= By.id("formSiev:coloniaPoblacion");
+		ciudadField = By.id("formSiev:ciudadF");
+		delegacionField = By.id("formSiev:delegacionMunicipio");
+		zipField = By.id("formSiev:codigoPostalF");
+		estadoTypeDrop= By.id("formSiev:estado_input");
 		contactoField = By.id("formSiev:itNumContCli");
 		evaluacionButton = By.id("formSiev:btnEval");
-		fillDomicilioButton = By.id(enviroment == Environment.PRODUCTION?EConstants.FILL_DOMICILIO_BUTTON.getProd():EConstants.FILL_DOMICILIO_BUTTON.getQA());
+		closeDomicilioAlert = By.xpath("/html/body/center[2]/form[4]/div[1]/div[1]/a");
+		fillDomicilioButton = By.id(environment == Environment.PRODUCTION?EConstants.FILL_DOMICILIO_BUTTON.getProd():EConstants.FILL_DOMICILIO_BUTTON.getQA());
+		rfcFailureDiv = By.xpath("/html/body/center[1]/div");
 		firmaFisicaButton = By.id("formDlg:btnFisica");
 		confirmPreEvalButton = By.id("formDlg:btnSiPreEvalua");
 		documentLink = By.xpath("/html/body/center[2]/form[4]/div[6]/div[2]/a");
 		confirmEvalButton = By.id("formDlg:btnSiEvalua");
-		folioSIEVResult = By.id(enviroment == Environment.PRODUCTION?EConstants.FOLIO_SIEV_RESULT.getProd():EConstants.FOLIO_SIEV_RESULT.getQA());
+		folioSIEVResult = By.id(environment == Environment.PRODUCTION?EConstants.FOLIO_SIEV_RESULT.getProd():EConstants.FOLIO_SIEV_RESULT.getQA());
 		resetForm = By.id("formSiev:cleanBtn");
 		capturaTicketsButton = By.id("formSiev:resultadoForm:btnTicketsAdeudo");
-		noValidarButton = By.id(enviroment == Environment.PRODUCTION?EConstants.NOVALIDAR_BUTTON.getProd():EConstants.NOVALIDAR_BUTTON.getQA());
+		noValidarButton = By.id(environment == Environment.PRODUCTION?EConstants.NOVALIDAR_BUTTON.getProd():EConstants.NOVALIDAR_BUTTON.getQA());
 		razonAdeudo = By.id("ticketsForm:txtRAzonAdeudo");
-		nuevaValidacion = By.id(enviroment == Environment.PRODUCTION?EConstants.NUEVA_VALIDACION.getProd():EConstants.NUEVA_VALIDACION.getQA());
+		nuevaValidacion = By.id(environment == Environment.PRODUCTION?EConstants.NUEVA_VALIDACION.getProd():EConstants.NUEVA_VALIDACION.getQA());
 		aceptaEvaluacionButton = By.id("formSiev:resultadoForm:aceptaEval");
 		lugarNacimientoTypeDrop = By.id("datosClienteForm2:cmbLugNac_input");
 		lugarNacimientoDiv = By.id("datosClienteForm2:cmbLugNac");
@@ -102,23 +112,24 @@ public class PageEvaluacion {
 		telefonoTrabajoField = By.id("datosClienteForm2:txtDeTelefono");
 		empresaField = By.id("datosClienteForm2:txtEmpresa");
 		generarSISACTButton = By.id("datosClienteForm2:btnGenFolSisact");
-		agregarReferenciaButton = By.id(enviroment == Environment.PRODUCTION?EConstants.AGREGAR_REFERENCIA_BUTTON.getProd():EConstants.AGREGAR_REFERENCIA_BUTTON.getQA());
+		agregarReferenciaButton = By.id(environment == Environment.PRODUCTION?EConstants.AGREGAR_REFERENCIA_BUTTON.getProd():EConstants.AGREGAR_REFERENCIA_BUTTON.getQA());
 		nombreRefField = By.id("dlgRfrForm:txtNomRfr");
 		apellidosRefField = By.id("dlgRfrForm:txtApeRfr");
 		telefonoRefField = By.id("dlgRfrForm:txtTelDomRfr");
 		telOficinaRefField = By.id("dlgRfrForm:txtTelOfiRfr");
 		addRefButton = By.id("dlgRfrForm:btnAddUpdRfr");
-		nombreRefAdded = By.id(enviroment == Environment.PRODUCTION?EConstants.NOMBRE_REF_ADDED.getProd():EConstants.NOMBRE_REF_ADDED.getQA());
-		apellidosRefAdded = By.id(enviroment == Environment.PRODUCTION?EConstants.APELLIDOS_REF_ADDED.getProd():EConstants.APELLIDOS_REF_ADDED.getQA());
-		telefonoRefAdded = By.id(enviroment == Environment.PRODUCTION?EConstants.TELEFONO_REF_ADDED.getProd():EConstants.TELEFONO_REF_ADDED.getQA());
+		nombreRefAdded = By.id(environment == Environment.PRODUCTION?EConstants.NOMBRE_REF_ADDED.getProd():EConstants.NOMBRE_REF_ADDED.getQA());
+		apellidosRefAdded = By.id(environment == Environment.PRODUCTION?EConstants.APELLIDOS_REF_ADDED.getProd():EConstants.APELLIDOS_REF_ADDED.getQA());
+		telefonoRefAdded = By.id(environment == Environment.PRODUCTION?EConstants.TELEFONO_REF_ADDED.getProd():EConstants.TELEFONO_REF_ADDED.getQA());
 		resultEvaluacion = By.id("formSiev:REST");
 		resultBuro = By.id("formSiev:RESbURO");
-		authBuroButton = By.id(enviroment == Environment.PRODUCTION?EConstants.AUTH_BURO_BUTTON.getProd():EConstants.AUTH_BURO_BUTTON.getQA() );
+		authBuroButton = By.id(environment == Environment.PRODUCTION?EConstants.AUTH_BURO_BUTTON.getProd():EConstants.AUTH_BURO_BUTTON.getQA() );
 		confirmaEvalSinBC = By.id("formDlg:btnSiConfirmaSinBc");
-		folioSISACT = By.id(enviroment == Environment.PRODUCTION?EConstants.FOLIO_SISACT.getProd():EConstants.FOLIO_SISACT.getQA());
-		noNameRefAdded = By.id(enviroment == Environment.PRODUCTION?EConstants.NONAME_REF_ADDED.getProd():EConstants.NONAME_REF_ADDED.getQA());
-		noApellidosRefAdded = By.id(enviroment == Environment.PRODUCTION?EConstants.NOAPELLIDOS_REF_ADDED.getProd():EConstants.NOAPELLIDOS_REF_ADDED.getQA());
-		noTelefonoRefAdded = By.id(enviroment == Environment.PRODUCTION?EConstants.NOTELEFONO_REF_ADDE.getProd():EConstants.NOTELEFONO_REF_ADDE.getQA());
+		folioSISACT = By.id(environment == Environment.PRODUCTION?EConstants.FOLIO_SISACT.getProd():EConstants.FOLIO_SISACT.getQA());
+		noNameRefAdded = By.id(environment == Environment.PRODUCTION?EConstants.NONAME_REF_ADDED.getProd():EConstants.NONAME_REF_ADDED.getQA());
+		noApellidosRefAdded = By.id(environment == Environment.PRODUCTION?EConstants.NOAPELLIDOS_REF_ADDED.getProd():EConstants.NOAPELLIDOS_REF_ADDED.getQA());
+		noTelefonoRefAdded = By.id(environment == Environment.PRODUCTION?EConstants.NOTELEFONO_REF_ADDE.getProd():EConstants.NOTELEFONO_REF_ADDE.getQA());
+		respuestaEvaluacionDiv = By.id("formSiev:panelEvaluacion1");
 	}
 
 	public String assertEstructuraFolioSIEV() {
@@ -532,7 +543,68 @@ public class PageEvaluacion {
 		driver.findElement(telOficinaRefField).sendKeys(Helpers.EvaluacionPageHelpers.VALID_PHONE_VALUE);
 		
 	}
-
+	
+	/** Integración métodos Albert**/
+	
+	public void assertDomicilioPersonal() {
+		setMovimiento();
+		setTipoMovimiento();
+		setEvaluacion();
+		setDatosPersonales();
+		setDomicilio();
+		Assert.assertFalse(driver.findElement(calleField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty());
+		Assert.assertFalse(driver.findElement(numExteriorField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty());
+		Assert.assertFalse(driver.findElement(coloniaField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty());
+		Assert.assertFalse(driver.findElement(ciudadField).getAttribute(EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty());
+		Assert.assertFalse(driver.findElement(delegacionField).getAttribute(EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty());
+		Assert.assertFalse(driver.findElement(zipField).getAttribute(EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty());
+		Assert.assertFalse(driver.findElement(contactoField).getAttribute(EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty());
+		Assert.assertFalse(new Select(driver.findElement(estadoTypeDrop)).getFirstSelectedOption().getText().contains("Select"));
+	}
+	
+	public void assertRespuestaEvaluacion() {
+		assertEstructuraFolioSIEV();
+		Assert.assertTrue(driver.findElement(respuestaEvaluacionDiv).isDisplayed());
+	}
+	
+	public void assertMandatoryPersonalFields() {
+		driver.findElement(rfcButton).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
+		Helpers.threadSleep(Helpers.defaultSeconds);
+		Assert.assertTrue(driver.findElement(rfcFailureDiv).isDisplayed());
+	}
+	
+	public void assertDateFormat() {
+		setMovimiento();
+		setTipoMovimiento();
+		setEvaluacion();
+		driver.findElement(lastNameField).sendKeys(Helpers.EvaluacionPageHelpers.LASTNAME_VALUE);
+		driver.findElement(secondLastNameField).clear();
+		driver.findElement(secondLastNameField).sendKeys(Helpers.EvaluacionPageHelpers.SECOND_LASTNAME_VALUE);
+		driver.findElement(firstNameField).sendKeys(Helpers.EvaluacionPageHelpers.FIRST_NAME_VALUE);
+		driver.findElement(secondNameField).sendKeys(Helpers.EvaluacionPageHelpers.SECOND_NAME_VALUE);
+		driver.findElement(fecNacField).sendKeys(Helpers.EvaluacionPageHelpers.INVALID_FEC_NAC_VALUE);
+		driver.findElement(rfcButton).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
+		driver.findElement(closeDomicilioAlert).click();
+		Helpers.threadSleep(Helpers.defaultSeconds);
+		Assert.assertTrue(checkUIStateError(fecNacField));
+	}
+	
+	public void assertGeneracionRFC() {
+		setMovimiento();
+		setTipoMovimiento();
+		setEvaluacion();
+		setDatosPersonales();
+		Assert.assertFalse(isFieldEmpty(rfcField));
+	}
+	
+	public void assertInformacionCrediticia() {
+		//set
+		
+	}
+	
+	/****/
 	private boolean isFieldEmpty(By byField) {
 		return driver.findElement(byField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty();
 	}

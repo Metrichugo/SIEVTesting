@@ -21,17 +21,18 @@ public class PageLogin {
 	private By loginButton;
 	private By invalidLoginAlert;
 	private By userLoged;
+	private By menuButton;
 	
 
-	public PageLogin(@Nonnull WebDriver driver,Environment enviroment) {
+	public PageLogin(@Nonnull WebDriver driver,Environment environment) {
 		this.driver = driver;
 		userNameField = By.id("loginForm:txtUsr");
 		userPassField = By.id("loginForm:txtPwd");
 		regionDrop = By.id("loginForm:cmbRegion_input");
-		userTypeDrop = By.id(enviroment==Environment.PRODUCTION?EConstants.USER_TYPE.getProd():EConstants.USER_TYPE.getQA());
+		userTypeDrop = By.id(environment==Environment.PRODUCTION?EConstants.USER_TYPE.getProd():EConstants.USER_TYPE.getQA());
 		loginButton = By.id("loginForm:btnLog");
 		invalidLoginAlert = By.xpath("/html/body/center[1]/div/div/ul/li");
-		userLoged = By.id(enviroment==Environment.PRODUCTION?EConstants.USER_LOGED.getProd():EConstants.USER_LOGED.getQA());
+		userLoged = By.id(environment==Environment.PRODUCTION?EConstants.USER_LOGED.getProd():EConstants.USER_LOGED.getQA());
 	}
 	
 	public void Login(String user,String password) {
@@ -80,4 +81,5 @@ public class PageLogin {
 		driver.findElement(loginButton).click();
 		Helpers.threadSleep(2);
 	}
+	
 }

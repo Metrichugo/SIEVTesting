@@ -3,11 +3,13 @@ package SIEV.common;
 public enum EConstants {
 
 	// PROD --> QA
-	END_POINT("https://10.119.249.162:8181/SIEV/","http://www.telceltest85.telcel.com:19500/SIEV/"),
+	//END_POINT("https://10.119.249.162:8181/SIEV/","http://www.telceltest85.telcel.com:19500/SIEV/"),Descomentar, se comenta para el 3er ambiente de desarrollo
+	END_POINT("https://10.119.249.162:8181/SIEV/","https://oam.telcelinstitucional.com:5445/SIEV/"),
 	USER_TYPE("loginForm:j_idt52_input","loginForm:j_id_21_input"),
 	USER_LOGED("encabezadoForm:j_idt21","encabezadoForm:j_id_t"),
 	RFC_BUTTON("formSiev:j_idt107","formSiev:j_id_40"),
-	FILL_DOMICILIO_BUTTON("formDlg:tblClientes:0:j_idt321","formDlg:tblClientes:0:j_id_cm"),
+	//FILL_DOMICILIO_BUTTON("formDlg:tblClientes:0:j_idt321","formDlg:tblClientes:0:j_id_cm"), Descomentar, se comenta para el 3er ambiente de desarrollo
+	FILL_DOMICILIO_BUTTON("formDlg:tblClientes:0:j_idt321","formDlg:tblClientes:0:j_id_ce"),
 	FOLIO_SIEV_RESULT("formSiev:resultadoForm:j_idt199","formSiev:resultadoForm:j_id_7o"),
 	NOVALIDAR_BUTTON("ticketsForm:j_idt308","ticketsForm:j_id_by"),
 	NUEVA_VALIDACION("ticketsForm:j_idt313","ticketsForm:j_id_c8"),
@@ -19,9 +21,12 @@ public enum EConstants {
 	NOAPELLIDOS_REF_ADDED("datosClienteForm2:tblReferencias:2:j_idt282","datosClienteForm2:tblReferencias:2:j_id_ar"),
 	NOTELEFONO_REF_ADDE("datosClienteForm2:tblReferencias:2:j_idt284","datosClienteForm2:tblReferencias:2:j_id_at"),
 	FOLIO_SISACT("datosClienteForm2:j_idt292","datosClienteForm2:j_id_b3"),
-	AUTH_BURO_BUTTON("formSiev:j_idt142","formSiev:j_id_5e")
+	AUTH_BURO_BUTTON("formSiev:j_idt142","formSiev:j_id_5e"),
+	//LOGIN_URL("Add login URL 1st environment","Add login URL 2nd environment"),
+	LOGIN_URL("","https://oam.telcelinstitucional.com:5445/SIEV/faces/Login.xhtml"),
+	//ACTIVACIONES_URL("Add activaciones URL 1st environment","Add activaciones URL 2nd environment")
+	ACTIVACIONES_URL("","https://oam.telcelinstitucional.com:5445/SIEV/faces/principal.xhtml")
 	;
-	
 	private String prod;
 	private String QA;
 	
