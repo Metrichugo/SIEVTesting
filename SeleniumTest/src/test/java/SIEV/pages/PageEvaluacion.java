@@ -29,7 +29,7 @@ public class PageEvaluacion {
 	/* By's for Domicilio */
 	private By calleField,numExteriorField,coloniaField,ciudadField,delegacionField,zipField,estadoTypeDrop,contactoField, formDireccion;
 	/* By's for Informacion Crediticia */
-	private By tarjetaTypeDrop, creditoAutoTypeDrop, creditoBancarioTypeDrop;
+	private By tarjetaTypeDrop, creditoAutoTypeDrop, creditoAutoDrop , creditoBancarioTypeDrop, creditoBancarioDrop ,TDClastInput;
 	/* By's for Autorizacion Evaluación */
 	private By authButtonOne, authButtonTwo, evaluacionButton, firmaFisicaButton, confirmPreEvalButton, documentLink,
 			confirmEvalButton, folioSIEVResult;
@@ -70,7 +70,10 @@ public class PageEvaluacion {
 		authButtonTwo = By.id("formSiev:blnAuto2");
 		tarjetaTypeDrop = By.id("formSiev:cmbTc_input");
 		creditoAutoTypeDrop = By.id("formSiev:creditoAutomotriz_input");
+		creditoAutoDrop = By.id("formSiev:creditoAutomotriz");
 		creditoBancarioTypeDrop = By.id("formSiev:creditoBancario_input");
+		creditoBancarioDrop = By.id("formSiev:creditoBancario");
+		TDClastInput = By.id("formSiev:txtUlt4DigTc");
 		formDireccion = By.id("formSiev:direccion");
 		calleField = By.id("formSiev:calle");
 		numExteriorField =By.id("formSiev:numExterior");
@@ -544,8 +547,6 @@ public class PageEvaluacion {
 		
 	}
 	
-	/** Integración métodos Albert**/
-	
 	public void assertDomicilioPersonal() {
 		setMovimiento();
 		setTipoMovimiento();
@@ -600,11 +601,24 @@ public class PageEvaluacion {
 	}
 	
 	public void assertInformacionCrediticia() {
-		//set
-		
+		setMovimiento();
+		setTipoMovimiento();
+		setEvaluacion();
+		setDatosPersonales();
+		setDomicilio();
+		Select tarjeta = new Select(driver.findElement(tarjetaTypeDrop));
+		tarjeta.selectByVisibleText(Helpers.EvaluacionPageHelpers.TARJETA_POSSITIVE_VALUE);
+		driver.findElement(authButtonOne).click();
+		driver.findElement(authButtonTwo).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
+		driver.findElement(evaluacionButton).click();
+		Helpers.threadSleep(Helpers.tinySeconds);
+		Assert.assertTrue(isFieldEmpty(TDClastInput));
+		Assert.assertTrue(checkUIStateError(TDClastInput));
+		Assert.assertTrue(checkUIStateError(creditoBancarioDrop));
+		Assert.assertTrue(checkUIStateError(creditoAutoDrop));
 	}
 	
-	/****/
 	private boolean isFieldEmpty(By byField) {
 		return driver.findElement(byField).getAttribute(Helpers.EvaluacionPageHelpers.VALUE_ATTRIBUTE).isEmpty();
 	}

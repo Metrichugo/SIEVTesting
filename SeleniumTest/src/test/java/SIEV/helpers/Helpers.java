@@ -71,6 +71,7 @@ public class Helpers {
 		/*Domicilio Personal*/
 		public static final String CONTACTO_VALUE = "5512345678";
 		/*Información Crediticia*/
+		public static final String TARJETA_POSSITIVE_VALUE = "SI";
 		public static final String TARJETA_VALUE = "NO";
 		public static final String CREDITO_AUTO = "No tiene cuenta automotriz";
 		public static final String CREDITO_BANCO = "No tiene cuenta bancaria";
